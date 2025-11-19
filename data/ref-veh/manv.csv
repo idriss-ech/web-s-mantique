@@ -1,0 +1,25 @@
+﻿Code,Description
+1,Sans changement de direction
+2,"Même sens, même file"
+3,Entre 2 files
+4,En marche arrière
+5,A contresens
+6,En franchissant le terre-plein central
+7,"Dans le couloir bus, dans le même sens"
+8,"Dans le couloir bus, dans le sens inverse"
+9,En s’insérant
+10,En faisant demi-tour sur la chaussée
+11,Changeant de file à gauche
+12,Changeant de file à droite
+13,Déporté à gauche
+14,Déporté à droite
+15,Tournant à gauche
+16,Tournant à droite
+17,Dépassant à gauche
+18,Dépassant à droite
+19,Traversant la chaussée
+20,Manœuvre de stationnement
+21,Manœuvre d’évitement
+22,Ouverture de porte
+23,Arrêté (hors stationnement)
+24,En stationnement (avec occupants)

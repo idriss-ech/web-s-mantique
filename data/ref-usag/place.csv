@@ -1,0 +1,10 @@
+Code,Description
+1,Conducteur
+2,Passager avant
+3,Passager arrière gauche
+4,Passager arrière milieu
+5,Passager arrière droit
+6,Passager d'un autre emplacement
+7,Piéton
+8,Cycliste
+9,Autre
