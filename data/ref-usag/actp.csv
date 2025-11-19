@@ -1,0 +1,9 @@
+Code,Description
+0,Non renseigné ou sans objet
+1,Se déplaçant - Sens véhicule heurtant
+2,Se déplaçant - Sens inverse du véhicule
+3,Traversant
+4,Masqué
+5,Jouant – courant
+6,Avec animal
+9,Autre
