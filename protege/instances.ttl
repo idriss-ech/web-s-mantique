@@ -7,17 +7,16 @@
 # Departments & Communes
 #################################################################
 
-ra:Dep_75 a ra:Department ; owl:sameAs dbpedia:Paris .
-ra:Dep_38 a ra:Department ; owl:sameAs dbpedia:Isère .
+ra:Dep_69 a ra:Department ; owl:sameAs dbpedia:Lyon .
+ra:Dep_21 a ra:Department ; owl:sameAs dbpedia:Dijon .
 
-ra:Commune_75101 a ra:Commune ;
-  ra:inDepartment ra:Dep_75 ;
-  ra:codeINSEE "75101" .
+ra:Commune_69001 a ra:Commune ;
+  ra:inDepartment ra:Dep_69 ;
+  ra:codeINSEE "69001" .
 
-ra:Commune_38185 a ra:Commune ;
-  ra:inDepartment ra:Dep_38 ;
-  ra:codeINSEE "38185" .
-
+ra:Commune_21000 a ra:Commune ;
+  ra:inDepartment ra:Dep_21 ;
+  ra:codeINSEE "21000" .
 #################################################################
 # Locations
 #################################################################
@@ -32,10 +31,10 @@ ra:Lieu_202400000001 a ra:Location ;
   ra:long "2.3522" .
 
 ra:Lieu_202400000010 a ra:Location ;
-  ra:inCommune ra:Commune_38185 ;
+  ra:inCommune ra:Commune_21000 ;
   ra:adr "Boulevard Maréchal Foch" ;
-  ra:dep 38 ;
-  ra:com 38185 ;
+  ra:dep 21 ;
+  ra:com 21000 ;
   ra:agg 1 ;
   ra:lat "45.188529" ;
   ra:long "5.724524" .
@@ -82,7 +81,7 @@ ra:Vehicule_200001112 a ra:Vehicle ;
 # Persons (Usagers)
 #################################################################
 
-# Accident 1 – Paris
+# Accident 1 – Lyon
 ra:Usager_203988580 a ra:Man ;
   ra:idUsager "203988580" ;
   ra:anNais 1987 ;
@@ -93,7 +92,7 @@ ra:Usager_203988580 a ra:Man ;
   ra:occupantOf ra:Vehicule_155781758 ;
   ra:driverOf ra:Vehicule_155781758 .
 
-# Accident 2 – Grenoble
+# Accident 2 – Dijon
 ra:Usager_300001111 a ra:Man ;
   ra:idUsager "300001111" ;
   ra:anNais 1991 ;
