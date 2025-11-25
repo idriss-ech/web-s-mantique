@@ -1,0 +1,114 @@
+
+@prefix ra: <http://www.w3.org/2012/7/ra3.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+
+#################################################################
+# Departments & Communes
+#################################################################
+
+ra:Dep_75 a ra:Department ; owl:sameAs dbpedia:Paris .
+ra:Dep_38 a ra:Department ; owl:sameAs dbpedia:Isère .
+
+ra:Commune_75101 a ra:Commune ;
+  ra:inDepartment ra:Dep_75 ;
+  ra:codeINSEE "75101" .
+
+ra:Commune_38185 a ra:Commune ;
+  ra:inDepartment ra:Dep_38 ;
+  ra:codeINSEE "38185" .
+
+#################################################################
+# Locations
+#################################################################
+
+ra:Lieu_202400000001 a ra:Location ;
+  ra:inCommune ra:Commune_75101 ;
+  ra:adr "D438" ;
+  ra:dep 75 ;
+  ra:com 75101 ;
+  ra:agg 1 ;
+  ra:lat "48.8566" ;
+  ra:long "2.3522" .
+
+ra:Lieu_202400000010 a ra:Location ;
+  ra:inCommune ra:Commune_38185 ;
+  ra:adr "Boulevard Maréchal Foch" ;
+  ra:dep 38 ;
+  ra:com 38185 ;
+  ra:agg 1 ;
+  ra:lat "45.188529" ;
+  ra:long "5.724524" .
+
+#################################################################
+# Accidents
+#################################################################
+
+ra:Acc_202400000001 a ra:RoadAccident ;
+  ra:NumAcc "202400000001" ;
+  ra:jour 17 ; ra:mois 5 ; ra:an 2024 ;
+  ra:hrmn "1535" ; ra:lum 1 ;
+  ra:hasLocation ra:Lieu_202400000001 .
+
+ra:Acc_202400000010 a ra:RoadAccident ;
+  ra:NumAcc "202400000010" ;
+  ra:jour 12 ; ra:mois 3 ; ra:an 2024 ;
+  ra:hrmn "1845" ; ra:lum 1 ;
+  ra:hasLocation ra:Lieu_202400000010 .
+
+#################################################################
+# Vehicles
+#################################################################
+
+ra:Vehicule_155781758 a ra:Vehicle ;
+  ra:idVehicule "155781758" ;
+  ra:numVeh "A01" ;
+  ra:catv 7 ;
+  ra:vehicleInvolvedIn ra:Acc_202400000001 .
+
+ra:Vehicule_200001111 a ra:Vehicle ;
+  ra:idVehicule "200001111" ;
+  ra:numVeh "A01" ;
+  ra:catv 1 ;
+  ra:vehicleInvolvedIn ra:Acc_202400000010 .
+
+ra:Vehicule_200001112 a ra:Vehicle ;
+  ra:idVehicule "200001112" ;
+  ra:numVeh "B01" ;
+  ra:catv 2 ;
+  ra:vehicleInvolvedIn ra:Acc_202400000010 .
+
+#################################################################
+# Persons (Usagers)
+#################################################################
+
+# Accident 1 – Paris
+ra:Usager_203988580 a ra:Man ;
+  ra:idUsager "203988580" ;
+  ra:anNais 1987 ;
+  ra:catu 1 ;
+  ra:grav 1 ;
+  ra:numVehPers "A01" ;
+  ra:involvedIn ra:Acc_202400000001 ;
+  ra:occupantOf ra:Vehicule_155781758 ;
+  ra:driverOf ra:Vehicule_155781758 .
+
+# Accident 2 – Grenoble
+ra:Usager_300001111 a ra:Man ;
+  ra:idUsager "300001111" ;
+  ra:anNais 1991 ;
+  ra:catu 1 ;
+  ra:grav 2 ;
+  ra:numVehPers "A01" ;
+  ra:involvedIn ra:Acc_202400000010 ;
+  ra:occupantOf ra:Vehicule_200001111 ;
+  ra:driverOf ra:Vehicule_200001111 .
+
+ra:Usager_300001112 a ra:Woman ;
+  ra:idUsager "300001112" ;
+  ra:anNais 2000 ;
+  ra:catu 2 ;
+  ra:grav 1 ;
+  ra:numVehPers "B01" ;
+  ra:involvedIn ra:Acc_202400000010 ;
+  ra:occupantOf ra:Vehicule_200001112 .

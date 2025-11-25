@@ -1,0 +1,1353 @@
+Prefix: : <http://www.w3.org/ontologies/2012/6/ra.owl#>
+Prefix: dc: <http://purl.org/dc/elements/1.1/>
+Prefix: owl: <http://www.w3.org/2002/07/owl#>
+Prefix: ra: <ra:http://www.w3.org/2012/7/ra3.owl#>
+Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix: xml: <http://www.w3.org/XML/1998/namespace>
+Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
+
+
+
+Ontology: <http://www.w3.org/2012/7/ra3.owl>
+
+
+AnnotationProperty: rdfs:comment
+
+    
+Datatype: rdf:PlainLiteral
+
+    
+Datatype: xsd:anyURI
+
+    
+Datatype: xsd:boolean
+
+    
+Datatype: xsd:date
+
+    
+Datatype: xsd:integer
+
+    
+Datatype: xsd:positiveInteger
+
+    
+Datatype: xsd:string
+
+    
+ObjectProperty: <http://www.w3.org/2012/7/ra3.owl#hascaracteristique>
+
+    SubPropertyOf: 
+        owl:topObjectProperty
+    
+    
+ObjectProperty: isPassengerOf
+
+    SubPropertyOf: 
+        owl:topObjectProperty
+    
+    Range: 
+        ra:Vehicle
+    
+    
+ObjectProperty: owl:topObjectProperty
+
+    
+ObjectProperty: ra:drivenBy
+
+    Domain: 
+        ra:Vehicle
+    
+    
+ObjectProperty: ra:drives
+
+    SubPropertyOf: 
+        owl:topObjectProperty
+    
+    Domain: 
+        owl:Thing
+    
+    Range: 
+        ra:Vehicle
+    
+    
+ObjectProperty: ra:involvedIn
+
+    Domain: 
+        owl:Thing
+    
+    Range: 
+        ra:RoadAccident
+    
+    
+ObjectProperty: ra:involves
+
+    Annotations: 
+        rdfs:comment "involves Person, Vehicle, Animal, NonLivingThing like a stone on the road, another RoadAccident, etc"
+    
+    Domain: 
+        ra:RoadAccident
+    
+    Range: 
+        owl:Thing
+    
+    
+ObjectProperty: ra:location
+
+    Annotations: 
+        rdfs:comment "located in"
+    
+    Domain: 
+        ra:Event
+    
+    Range: 
+        ra:Location
+    
+    
+DataProperty: ra:Name
+
+    Annotations: 
+        rdfs:comment "same as lastName if not present"
+    
+    Domain: 
+        ra:LivingBeing
+    
+    Range: 
+        xsd:string
+    
+    EquivalentTo: 
+        ra:lastName
+    
+    
+DataProperty: ra:SSN
+
+    Annotations: 
+        rdfs:comment "every living being can have a social security number, a person HAS one"
+    
+    Domain: 
+        ra:LivingBeing
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:accidentDetails
+
+    Domain: 
+        ra:RoadAccident
+    
+    Range: 
+        xsd:anyURI
+    
+    
+DataProperty: ra:actp
+
+    Annotations: 
+        rdfs:comment "Action du piéton au moment de l'accident."
+    
+    Domain: 
+        ra:Person
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:address
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:ageInyears
+
+    Annotations: 
+        rdfs:comment "age at event time"
+    
+    Range: 
+        xsd:positiveInteger
+    
+    
+DataProperty: ra:anNais
+
+    Annotations: 
+        rdfs:comment "Année de naissance."
+    
+    Domain: 
+        ra:Person
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:animalRace
+
+    Annotations: 
+        rdfs:comment "Person are not Animal in my universe"
+    
+    Range: 
+        {"boar" , "cat" , "deer" , "dog" , "donkey" , "horse"}
+    
+    
+DataProperty: ra:birthDate
+
+    Domain: 
+        ra:LivingBeing
+    
+    EquivalentTo: 
+        ra:makeDate
+    
+    
+DataProperty: ra:catr
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:catu
+
+    Annotations: 
+        rdfs:comment "Catégorie d’usager (1=conducteur, 2=passager, 3=piéton)."
+    
+    Domain: 
+        ra:Person
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:catv
+
+    Annotations: 
+        rdfs:comment "Catégorie du véhicule."
+    
+    Domain: 
+        ra:Vehicle
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:choc
+
+    Annotations: 
+        rdfs:comment "Point de choc initial."
+    
+    Domain: 
+        ra:Vehicle
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:circ
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:date
+
+    Domain: 
+        ra:Event
+    
+    Range: 
+        xsd:date
+    
+    
+DataProperty: ra:declares
+
+    Domain: 
+        ra:Person
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:deliveredDate
+
+    Range: 
+        xsd:date
+    
+    
+DataProperty: ra:driverLicenceCategory
+
+    Range: 
+        {"lightvehicle" , "motorcycle" , "truck"}
+    
+    
+DataProperty: ra:driverLicenceNumber
+
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:driverProblem
+
+    Range: 
+        {"asleep" , "heartattack" , "lostcontrol" , "mistake" , "notlooking" , "onthephone"}
+    
+    
+DataProperty: ra:email
+
+    Domain: 
+        ra:LivingBeing
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:etatp
+
+    Annotations: 
+        rdfs:comment "État du piéton au moment de l'accident."
+    
+    Domain: 
+        ra:Person
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:firstName
+
+    Domain: 
+        ra:LivingBeing
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:gps
+
+    Annotations: 
+        rdfs:comment "e.g. lat:45.0 long:-6.5"
+    
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:grav
+
+    Annotations: 
+        rdfs:comment "Gravité des blessures (1=indemne, 2=tué, 3=blessé grave, 4=blessé léger)."
+    
+    Domain: 
+        ra:Person
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:idUsager
+
+    Annotations: 
+        rdfs:comment "Identifiant unique de l’usager dans la base Data.gouv."
+    
+    Domain: 
+        ra:Person
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:idVehicule
+
+    Annotations: 
+        rdfs:comment "Identifiant du véhicule associé à la personne.",
+        rdfs:comment "Identifiant unique du véhicule."
+    
+    Domain: 
+        ra:Person,
+        ra:Vehicle
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:infra
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:insuranceID
+
+    Domain: 
+        owl:Thing
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:insuranceType
+
+    Annotations: 
+        rdfs:comment "name of coverage package in the given insurance"
+    
+    Domain: 
+        owl:Thing
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:isInService
+
+    Annotations: 
+        rdfs:comment "someone working at the time of the even. dog can work by themselves"
+    
+    Domain: 
+        ra:LivingBeing
+    
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: ra:isOnRoadType
+
+    Annotations: 
+        rdfs:comment "roadType of Road the accident happens on"
+    
+    Domain: 
+        ra:RoadAccident
+    
+    Range: 
+        {"freeway" , "motorway" , "street"}
+    
+    
+DataProperty: ra:isRemote
+
+    Domain: 
+        owl:Thing
+    
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: ra:isSerious
+
+    Domain: 
+        ra:RoadAccident
+    
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: ra:isWitness
+
+    Annotations: 
+        rdfs:comment "robot and animal cannot be witness or declares something in my universe"
+    
+    Domain: 
+        ra:Person
+    
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: ra:larRout
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:lartpc
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:lastName
+
+    Domain: 
+        ra:LivingBeing
+    
+    Range: 
+        xsd:string
+    
+    EquivalentTo: 
+        ra:Name
+    
+    
+DataProperty: ra:lightCondition
+
+    Domain: 
+        ra:RoadAccident
+    
+    Range: 
+        {"darkness" , "daylight" , "inbetween" , "unknown"}
+    
+    
+DataProperty: ra:locp
+
+    Annotations: 
+        rdfs:comment "Localisation du piéton lors de l'accident."
+    
+    Domain: 
+        ra:Person
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:makeDate
+
+    Annotations: 
+        rdfs:comment "creation or delivered date"
+    
+    Domain: 
+        ra:NonLivingThing
+    
+    Range: 
+        xsd:date
+    
+    EquivalentTo: 
+        ra:birthDate
+    
+    
+DataProperty: ra:manv
+
+    Annotations: 
+        rdfs:comment "Manœuvre principale avant l’accident."
+    
+    Domain: 
+        ra:Vehicle
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:motor
+
+    Annotations: 
+        rdfs:comment "Type de moteur."
+    
+    Domain: 
+        ra:Vehicle
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:nbv
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:numAcc
+
+    Annotations: 
+        rdfs:comment "Identifiant de l’accident associé au véhicule (clé étrangère).",
+        rdfs:comment "Identifiant de l’accident associé à la personne (clé étrangère vers caractéristiques.csv)."
+    
+    Domain: 
+        ra:Person,
+        ra:Vehicle
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:numVeh
+
+    Annotations: 
+        rdfs:comment "Numéro du véhicule dans l’accident."
+    
+    Domain: 
+        ra:Person,
+        ra:Vehicle
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:obs
+
+    Annotations: 
+        rdfs:comment "Obstacle fixe heurté."
+    
+    Domain: 
+        ra:Vehicle
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:obsm
+
+    Annotations: 
+        rdfs:comment "Obstacle mobile heurté."
+    
+    Domain: 
+        ra:Vehicle
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:occutc
+
+    Annotations: 
+        rdfs:comment "Nombre d’occupants dans le véhicule."
+    
+    Domain: 
+        ra:Vehicle
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:orgAddress
+
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:orgFullName
+
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:orgShortName
+
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:parked
+
+    Domain: 
+        ra:Vehicle
+    
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: ra:passengerProtection
+
+    Annotations: 
+        rdfs:comment "use None to say that the passenger didn't have one"
+    
+    Range: 
+        {"airbag" , "arceau" , "helmet" , "seatbelt"}
+    
+    
+DataProperty: ra:place
+
+    Annotations: 
+        rdfs:comment "Position de l’usager dans le véhicule."
+    
+    Domain: 
+        ra:Person
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:plan
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:positionInVehicle
+
+    Range: 
+        {"backseat" , "front passenger" , "truck platform"}
+    
+    
+DataProperty: ra:pr
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:pr1
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:prof
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:relatedDamage
+
+    Annotations: 
+        rdfs:comment "apply to non living thing, cars, robot, same as injury for person/animal"
+    
+    Domain: 
+        ra:NonLivingThing
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:relatedInjury
+
+    Annotations: 
+        rdfs:comment "use some kind of existing classification"
+    
+    Domain: 
+        ra:LivingBeing
+    
+    Range: 
+        {"fatal" , "light" , "none" , "severe"}
+    
+    
+DataProperty: ra:relatedInjuryDesc
+
+    Annotations: 
+        rdfs:comment "sms size description of injury"
+    
+    Domain: 
+        ra:LivingBeing
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:secu1
+
+    Annotations: 
+        rdfs:comment "Équipement de sécurité principal."
+    
+    Domain: 
+        ra:Person
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:secu2
+
+    Annotations: 
+        rdfs:comment "Équipement de sécurité secondaire."
+    
+    Domain: 
+        ra:Person
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:secu3
+
+    Annotations: 
+        rdfs:comment "Équipement de sécurité tertiaire."
+    
+    Domain: 
+        ra:Person
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:sens
+
+    Annotations: 
+        rdfs:comment "Sens de circulation."
+    
+    Domain: 
+        ra:Vehicle
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:sexe
+
+    Annotations: 
+        rdfs:comment "Sexe de la personne (1=Homme, 2=Femme)."
+    
+    Domain: 
+        ra:Person
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:situ
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:speed
+
+    Annotations: 
+        rdfs:comment "speed in speedunit, default kmh"@en
+    
+    Domain: 
+        owl:Thing
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:speedUnit
+
+    Domain: 
+        owl:Thing
+    
+    Range: 
+        {"kmh" , "mph"}
+    
+    
+DataProperty: ra:surf
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:trafficViolation
+
+    Annotations: 
+        rdfs:comment "robot, animal, pedestrian included"
+    
+    Domain: 
+        owl:Thing
+    
+    Range: 
+        {"crossingfordidden" , "priority" , "redlight" , "speed" , "stop"}
+    
+    
+DataProperty: ra:trajet
+
+    Annotations: 
+        rdfs:comment "Type de trajet (domicile-travail, loisir, etc.)."
+    
+    Domain: 
+        ra:Person
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:v1
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:v2
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:validityDate
+
+    Range: 
+        xsd:date
+    
+    
+DataProperty: ra:vehicleBrand
+
+    Domain: 
+        ra:Vehicle
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:vehicleCategory
+
+    Domain: 
+        ra:Vehicle
+    
+    Range: 
+        {"bicycle" , "bus" , "car" , "motocycle" , "truck"}
+    
+    
+DataProperty: ra:vehicleColor
+
+    Domain: 
+        ra:Vehicle
+    
+    Range: 
+        {"darkgrey" , "green" , "lightgrey"}
+    
+    
+DataProperty: ra:vehicleID
+
+    Domain: 
+        ra:Vehicle
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:vehicleProblem
+
+    Domain: 
+        ra:Vehicle
+    
+    Range: 
+        {"brake" , "deadengine" , "flattire"}
+    
+    
+DataProperty: ra:vma
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:voie
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: ra:vosp
+
+    Domain: 
+        ra:Location
+    
+    Range: 
+        xsd:integer
+    
+    
+DataProperty: ra:weatherCondition
+
+    Domain: 
+        ra:RoadAccident
+    
+    Range: 
+        {"earthquake" , "flood" , "ice" , "mud" , "normal" , "rain" , "smoke" , "snow" , "wind"}
+    
+    
+Class: owl:Thing
+
+    
+Class: ra:Animal
+
+    SubClassOf: 
+        ra:LivingBeing
+    
+    DisjointWith: 
+        ra:Person
+    
+    
+Class: ra:Event
+
+    SubClassOf: 
+        ra:NonLivingThing
+    
+    
+Class: ra:LivingBeing
+
+    DisjointWith: 
+        ra:NonLivingThing
+    
+    
+Class: ra:Location
+
+    SubClassOf: 
+        ra:NonLivingThing
+    
+    
+Class: ra:Man
+
+    SubClassOf: 
+        ra:Person
+    
+    DisjointWith: 
+        ra:Woman
+    
+    
+Class: ra:NonLivingThing
+
+    Annotations: 
+        rdfs:comment "Top class for non living thing like vehicle, robot, etc"
+    
+    DisjointWith: 
+        ra:LivingBeing
+    
+    
+Class: ra:Person
+
+    SubClassOf: 
+        ra:LivingBeing
+    
+    DisjointWith: 
+        ra:Animal
+    
+    
+Class: ra:RoadAccident
+
+    SubClassOf: 
+        ra:Event
+    
+    
+Class: ra:Vehicle
+
+    SubClassOf: 
+        ra:NonLivingThing
+    
+    HasKey: 
+        ra:vehicleID
+    
+    
+Class: ra:Woman
+
+    SubClassOf: 
+        ra:Person
+    
+    DisjointWith: 
+        ra:Man
+    
+    
+Individual: Alice
+
+    Types: 
+        ra:Woman
+    
+    Facts:  
+     isPassengerOf  GreenPunto,
+     ra:involvedIn  RA170560,
+     ra:declares  "Laurie! stop !! Ya la voiture de Papa derriÃ¨re !"@fr,
+     ra:firstName  "Alice",
+     ra:isWitness  "yes",
+     ra:passengerProtection  "none",
+     ra:positionInVehicle  "backseat",
+     ra:relatedInjury  "none"
+    
+    
+Individual: Carpentras
+
+    Types: 
+        ra:Location
+    
+    
+Individual: DanielD
+
+    Types: 
+        ra:Man
+    
+    Facts:  
+     ra:SSN  "160031294"@fr,
+     ra:declares  "Laurie can't see a thing"@fr,
+     ra:email  "danield@w3.org"@fr,
+     ra:firstName  "Daniel",
+     ra:insuranceID  "2326779P"@fr,
+     ra:insuranceType  "full full full"@en,
+     ra:isRemote  "yes"@fr,
+     ra:isWitness  "true"@fr
+    
+    
+Individual: GreenPunto
+
+    Types: 
+        ra:Vehicle
+    
+    Facts:  
+     ra:drivenBy  Laurie,
+     ra:involvedIn  RA170560,
+     ra:isOnRoadType  "street one way",
+     ra:parked  "false",
+     ra:relatedDamage  "back paint gone on right side",
+     ra:speed  "-20",
+     ra:speedUnit  "kmh",
+     ra:vehicleBrand  "Fiat",
+     ra:vehicleCategory  "car",
+     ra:vehicleColor  "green metal",
+     ra:vehicleID  "876 GH 71",
+     ra:vehicleProblem  "rear mirro broken"
+    
+    
+Individual: Laurie
+
+    Types: 
+        ra:Woman
+    
+    Facts:  
+     ra:drives  GreenPunto,
+     ra:involvedIn  RA170560,
+     ra:SSN  "28806031",
+     ra:declares  "the read mirror was broken !",
+     ra:driverProblem  "not looking back",
+     ra:firstName  "Laurie",
+     ra:insuranceID  "2326779P",
+     ra:passengerProtection  "seatbelt",
+     ra:trafficViolation  "wrongway"
+    
+    
+Individual: MAIF
+
+    Facts:  
+     ra:orgAddress  "Le Cannet"
+    
+    
+Individual: Nala
+
+    Types: 
+        ra:Animal
+    
+    Facts:  
+     ra:involvedIn  RA170560,
+     ra:Name  "Nala",
+     ra:ageInyears  "17",
+     ra:animalRace  "maine coon female cat",
+     ra:insuranceID  "mieaou007",
+     ra:passengerProtection  "none",
+     ra:positionInVehicle  "backseat",
+     ra:relatedInjury  "light",
+     ra:relatedInjuryDesc  "broken nail and vomit on fur"
+    
+    
+Individual: RA170560
+
+    Types: 
+        ra:RoadAccident
+    
+    Facts:  
+     ra:involves  Alice,
+     ra:involves  DanielD,
+     ra:involves  GreenPunto,
+     ra:involves  Laurie,
+     ra:involves  Nala,
+     ra:involves  Yaya,
+     ra:location  Carpentras,
+     ra:accidentDetails  "http://dardailler.net",
+     ra:address  "11 rue du temple",
+     ra:date  "17/05/1960",
+     ra:gps  "lat 43 long 6",
+     ra:isOnRoadType  "motorway",
+     ra:isSerious  "false",
+     ra:lightCondition  "night",
+     ra:weatherCondition  "rain"
+    
+    
+Individual: VETSUP
+
+    
+Individual: Yaya
+
+    Types: 
+        ra:Vehicle
+    
+    Facts:  
+     ra:parked  "yes",
+     ra:relatedDamage  "back door left side bumped",
+     ra:speed  "0",
+     ra:vehicleBrand  "Toyota",
+     ra:vehicleCategory  "car",
+     ra:vehicleColor  "lightgrey",
+     ra:vehicleID  "765 DD 12"
+    
+    
+Individual: ra:Acc_202400000001
+
+    Types: 
+        ra:RoadAccident
+    
+    Facts:  
+     ra:involves  ra:Usager_203988581,
+     ra:involves  ra:Usager_203988582,
+     ra:involves  ra:Vehicule_155781758,
+     ra:involves  ra:Vehicule_155781759,
+     ra:location  ra:Lieu_202400000001
+    
+    
+Individual: ra:Lieu_202400000001
+
+    Types: 
+        ra:Location
+    
+    Facts:  
+     ra:catr  4,
+     ra:circ  2,
+     ra:infra  0,
+     ra:larRout  7,
+     ra:lartpc  "",
+     ra:nbv  2,
+     ra:plan  2,
+     ra:pr  1,
+     ra:pr1  260,
+     ra:prof  1,
+     ra:situ  1,
+     ra:surf  1,
+     ra:v1  "0",
+     ra:v2  "N/A",
+     ra:vma  90,
+     ra:voie  "D438",
+     ra:vosp  0
+    
+    
+Individual: ra:Usager_203988579
+
+    Types: 
+        ra:Man
+    
+    Facts:  
+     ra:actp  -1,
+     ra:anNais  2003,
+     ra:catu  1,
+     ra:etatp  -1,
+     ra:grav  3,
+     ra:locp  -1,
+     ra:numVeh  "A01",
+     ra:place  1,
+     ra:secu1  1,
+     ra:secu2  -1,
+     ra:secu3  -1,
+     ra:trajet  2
+    
+    
+Individual: ra:Usager_203988580
+
+    Types: 
+        ra:Man
+    
+    Facts:  
+     ra:actp  3,
+     ra:anNais  1987,
+     ra:catu  1,
+     ra:etatp  1,
+     ra:grav  1,
+     ra:locp  3,
+     ra:numVeh  "A01",
+     ra:place  1,
+     ra:secu1  1,
+     ra:secu2  0,
+     ra:secu3  -1,
+     ra:sexe  1,
+     ra:trajet  4
+    
+    
+Individual: ra:Usager_203988581
+
+    Types: 
+        ra:Man
+    
+    Facts:  
+     ra:actp  -1,
+     ra:anNais  2003,
+     ra:catu  1,
+     ra:etatp  -1,
+     ra:grav  3,
+     ra:locp  -1,
+     ra:numVeh  "A01",
+     ra:place  1,
+     ra:secu1  1,
+     ra:secu2  -1,
+     ra:secu3  -1,
+     ra:trajet  2
+    
+    
+Individual: ra:Usager_203988582
+
+    Types: 
+        ra:Woman
+    
+    Facts:  
+     ra:actp  -1,
+     ra:anNais  2007,
+     ra:catu  1,
+     ra:etatp  -1,
+     ra:grav  2,
+     ra:locp  -1,
+     ra:numVeh  "A01",
+     ra:place  1,
+     ra:secu1  1,
+     ra:secu2  -1,
+     ra:secu3  -1,
+     ra:trajet  2
+    
+    
+Individual: ra:Vehicule_155781758
+
+    Types: 
+        ra:Vehicle
+    
+    Facts:  
+     ra:drives  ra:Vehicule_155781758,
+     ra:involvedIn  ra:Acc_202400000001,
+     ra:catv  7,
+     ra:choc  1,
+     ra:manv  13,
+     ra:motor  1,
+     ra:numVeh  "A01",
+     ra:obs  0,
+     ra:obsm  2,
+     ra:sens  1
+    
+    
+Individual: ra:Vehicule_155781759
+
+    Types: 
+        ra:Vehicle
+    
+    Facts:  
+     ra:involvedIn  ra:Acc_202400000001,
+     ra:catv  15,
+     ra:choc  2,
+     ra:manv  21,
+     ra:motor  1,
+     ra:numVeh  "B01",
+     ra:obs  0,
+     ra:obsm  2,
+     ra:sens  2
+    
+    

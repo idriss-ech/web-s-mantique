@@ -1,0 +1,338 @@
+@prefix ra: <http://www.w3.org/2012/7/ra3.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@base <http://www.w3.org/2002/07/owl#> .
+
+[ rdf:type owl:Ontology
+ ] .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.w3.org/2012/7/ra3.owl#codeINSEE
+ra:codeINSEE rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.w3.org/2012/7/ra3.owl#driverOf
+ra:driverOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#hasLocation
+ra:hasLocation rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#inCommune
+ra:inCommune rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#inDepartment
+ra:inDepartment rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#involvedIn
+ra:involvedIn rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#occupantOf
+ra:occupantOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#vehicleInvolvedIn
+ra:vehicleInvolvedIn rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.w3.org/2012/7/ra3.owl#NumAcc
+ra:NumAcc rdf:type owl:DatatypeProperty ;
+          rdfs:range xsd:string .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#adr
+ra:adr rdf:type owl:DatatypeProperty ;
+       rdfs:range xsd:string .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#agg
+ra:agg rdf:type owl:DatatypeProperty ;
+       rdfs:range xsd:int .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#an
+ra:an rdf:type owl:DatatypeProperty ;
+      rdfs:range xsd:int .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#anNais
+ra:anNais rdf:type owl:DatatypeProperty ;
+          rdfs:range xsd:int .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#catu
+ra:catu rdf:type owl:DatatypeProperty ;
+        rdfs:range xsd:int .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#catv
+ra:catv rdf:type owl:DatatypeProperty ;
+        rdfs:range xsd:int .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#com
+ra:com rdf:type owl:DatatypeProperty ;
+       rdfs:range xsd:int .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#dep
+ra:dep rdf:type owl:DatatypeProperty ;
+       rdfs:range xsd:int .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#grav
+ra:grav rdf:type owl:DatatypeProperty ;
+        rdfs:range xsd:int .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#hrmn
+ra:hrmn rdf:type owl:DatatypeProperty ;
+        rdfs:range xsd:string .
+
+###  http://www.w3.org/2012/7/ra3.owl#jour
+ra:jour rdf:type owl:DatatypeProperty ;
+        rdfs:range xsd:int .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#lat
+ra:lat rdf:type owl:DatatypeProperty ;
+       rdfs:range xsd:string .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#long
+ra:long rdf:type owl:DatatypeProperty ;
+        rdfs:range xsd:string .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#lum
+ra:lum rdf:type owl:DatatypeProperty ;
+       rdfs:range xsd:int .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#mois
+ra:mois rdf:type owl:DatatypeProperty ;
+        rdfs:range xsd:int .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#numVeh
+ra:numVeh rdf:type owl:DatatypeProperty ;
+          rdfs:range xsd:string .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#numVehPers
+ra:numVehPers rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.w3.org/2012/7/ra3.owl#Commune
+ra:Commune rdf:type owl:Class ;
+           rdfs:subClassOf ra:Location .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Department
+ra:Department rdf:type owl:Class ;
+              rdfs:subClassOf ra:Location .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Location
+ra:Location rdf:type owl:Class .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Man
+ra:Man rdf:type owl:Class ;
+       rdfs:subClassOf ra:Person ;
+       owl:disjointWith ra:Woman .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Person
+ra:Person rdf:type owl:Class .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#RoadAccident
+ra:RoadAccident rdf:type owl:Class .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Vehicle
+ra:Vehicle rdf:type owl:Class .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Woman
+ra:Woman rdf:type owl:Class ;
+         rdfs:subClassOf ra:Person .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://dbpedia.org/resource/Isère
+dbpedia:Isère rdf:type owl:NamedIndividual ;
+              owl:sameAs ra:Dep_38 .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Dep_38
+ra:Dep_38 rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/Paris
+dbpedia:Paris rdf:type owl:NamedIndividual ;
+              owl:sameAs ra:Dep_75 .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Dep_75
+ra:Dep_75 rdf:type owl:NamedIndividual .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Acc_202400000001
+ra:Acc_202400000001 rdf:type owl:NamedIndividual ,
+                             ra:RoadAccident ;
+                    ra:hasLocation ra:Lieu_202400000001 ;
+                    ra:an 2024 ;
+                    ra:hrmn "1535" ;
+                    ra:jour 17 ;
+                    ra:lum 1 ;
+                    ra:mois 5 .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Acc_202400000010
+ra:Acc_202400000010 rdf:type owl:NamedIndividual ,
+                             ra:RoadAccident ;
+                    ra:hasLocation ra:Lieu_202400000010 ;
+                    ra:an 2024 ;
+                    ra:hrmn "1845" ;
+                    ra:jour 12 ;
+                    ra:lum 1 ;
+                    ra:mois 3 .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Commune_38185
+ra:Commune_38185 rdf:type owl:NamedIndividual ,
+                          ra:Commune ;
+                 ra:inDepartment ra:Dep_38 ;
+                 ra:codeINSEE "38185" .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Commune_75101
+ra:Commune_75101 rdf:type owl:NamedIndividual ,
+                          ra:Commune ;
+                 ra:inDepartment ra:Dep_75 ;
+                 ra:codeINSEE "75101" .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Dep_38
+ra:Dep_38 rdf:type owl:NamedIndividual ,
+                   ra:Department .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Dep_75
+ra:Dep_75 rdf:type owl:NamedIndividual ,
+                   ra:Department .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Lieu_202400000001
+ra:Lieu_202400000001 rdf:type owl:NamedIndividual ,
+                              ra:Location ;
+                     ra:inCommune ra:Commune_75101 ;
+                     ra:adr "D438" ;
+                     ra:agg 1 ;
+                     ra:com 75101 ;
+                     ra:dep 75 ;
+                     ra:lat "48.8566" ;
+                     ra:long "2.3522" .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Lieu_202400000010
+ra:Lieu_202400000010 rdf:type owl:NamedIndividual ,
+                              ra:Location ;
+                     ra:inCommune ra:Commune_38185 ;
+                     ra:adr "Boulevard Maréchal Foch" ;
+                     ra:agg 1 ;
+                     ra:com 38185 ;
+                     ra:dep 38 ;
+                     ra:lat "45.188529" ;
+                     ra:long "5.724524" .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Usager_203988580
+ra:Usager_203988580 rdf:type owl:NamedIndividual ,
+                             ra:Man ;
+                    ra:driverOf ra:Vehicule_155781758 ;
+                    ra:involvedIn ra:Acc_202400000001 ;
+                    ra:occupantOf ra:Vehicule_155781758 ;
+                    ra:anNais 1987 ;
+                    ra:catu 1 ;
+                    ra:grav 1 ;
+                    ra:numVehPers "A01" .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Usager_300001111
+ra:Usager_300001111 rdf:type owl:NamedIndividual ,
+                             ra:Man ;
+                    ra:driverOf ra:Vehicule_200001111 ;
+                    ra:involvedIn ra:Acc_202400000010 ;
+                    ra:occupantOf ra:Vehicule_200001111 ;
+                    ra:anNais 1991 ;
+                    ra:catu 1 ;
+                    ra:grav 2 ;
+                    ra:numVehPers "A01" .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Usager_300001112
+ra:Usager_300001112 rdf:type owl:NamedIndividual ,
+                             ra:Woman ;
+                    ra:involvedIn ra:Acc_202400000010 ;
+                    ra:occupantOf ra:Vehicule_200001112 ;
+                    ra:anNais 2000 ;
+                    ra:catu 2 ;
+                    ra:grav 1 ;
+                    ra:numVehPers "B01" .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Vehicule_155781758
+ra:Vehicule_155781758 rdf:type owl:NamedIndividual ,
+                               ra:Vehicle ;
+                      ra:vehicleInvolvedIn ra:Acc_202400000001 ;
+                      ra:catv 7 ;
+                      ra:numVeh "A01" .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Vehicule_200001111
+ra:Vehicule_200001111 rdf:type owl:NamedIndividual ,
+                               ra:Vehicle ;
+                      ra:vehicleInvolvedIn ra:Acc_202400000010 ;
+                      ra:catv 1 ;
+                      ra:numVeh "A01" .
+
+
+###  http://www.w3.org/2012/7/ra3.owl#Vehicule_200001112
+ra:Vehicule_200001112 rdf:type owl:NamedIndividual ,
+                               ra:Vehicle ;
+                      ra:vehicleInvolvedIn ra:Acc_202400000010 ;
+                      ra:catv 2 ;
+                      ra:numVeh "B01" .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
