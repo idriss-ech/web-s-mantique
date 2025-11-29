@@ -108,6 +108,7 @@ ra:grav rdf:type owl:DatatypeProperty ;
 ra:hrmn rdf:type owl:DatatypeProperty ;
         rdfs:range xsd:string .
 
+
 ###  http://www.w3.org/2012/7/ra3.owl#jour
 ra:jour rdf:type owl:DatatypeProperty ;
         rdfs:range xsd:int .
@@ -194,8 +195,6 @@ dbpedia:Isère rdf:type owl:NamedIndividual ;
 
 
 ###  http://www.w3.org/2012/7/ra3.owl#Dep_38
-ra:Dep_38 rdf:type owl:NamedIndividual .
-
 
 ###  http://dbpedia.org/resource/Paris
 dbpedia:Paris rdf:type owl:NamedIndividual ;
@@ -203,8 +202,6 @@ dbpedia:Paris rdf:type owl:NamedIndividual ;
 
 
 ###  http://www.w3.org/2012/7/ra3.owl#Dep_75
-ra:Dep_75 rdf:type owl:NamedIndividual .
-
 
 ###  http://www.w3.org/2012/7/ra3.owl#Acc_202400000001
 ra:Acc_202400000001 rdf:type owl:NamedIndividual ,

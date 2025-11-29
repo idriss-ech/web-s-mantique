@@ -44,8 +44,127 @@ class CSVToTTLConverter:
         f.write("@prefix ra: <http://www.w3.org/2012/7/ra3.owl#> .\n")
         f.write("@prefix owl: <http://www.w3.org/2002/07/owl#> .\n")
         f.write("@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n")
-        f.write("@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n")
+        f.write("@prefix dbo: <http://dbpedia.org/ontology/> .\n")
+        f.write("@prefix xsd: <http://www.w3.org/2001/XMLowl#> .\n")
         f.write("@prefix dbpedia: <http://dbpedia.org/resource/> .\n\n")
+    
+    
+    def write_departements(self, f):
+        """Write French departments mapping to TTL file"""
+        
+        f.write("#################################################################\n")
+        f.write("# Departments\n")
+        f.write("#################################################################\n\n")
+        
+   
+        f.write("ra:Dep_01 dbo:capital dbpedia:Bourg-en-Bresse .\n")
+        f.write("ra:Dep_02 dbo:capital dbpedia:Laon .\n")
+        f.write("ra:Dep_03 dbo:capital dbpedia:Moulins .\n")
+        f.write("ra:Dep_04 dbo:capital dbpedia:Digne-les-Bains .\n")
+        f.write("ra:Dep_05 dbo:capital dbpedia:Gap .\n")
+        f.write("ra:Dep_06 dbo:capital dbpedia:Nice .\n")
+        f.write("ra:Dep_07 dbo:capital dbpedia:Privas .\n")
+        f.write("ra:Dep_08 dbo:capital dbpedia:Charleville-Mézières .\n")
+        f.write("ra:Dep_09 dbo:capital dbpedia:Foix .\n")
+
+        f.write("ra:Dep_10 dbo:capital dbpedia:Troyes .\n")
+        f.write("ra:Dep_11 dbo:capital dbpedia:Carcassonne .\n")
+        f.write("ra:Dep_12 dbo:capital dbpedia:Rodez .\n")
+        f.write("ra:Dep_13 dbo:capital dbpedia:Marseille .\n")
+        f.write("ra:Dep_14 dbo:capital dbpedia:Caen .\n")
+        f.write("ra:Dep_15 dbo:capital dbpedia:Aurillac .\n")
+        f.write("ra:Dep_16 dbo:capital dbpedia:Angoulême .\n")
+        f.write("ra:Dep_17 dbo:capital dbpedia:La_Rochelle .\n")
+        f.write("ra:Dep_18 dbo:capital dbpedia:Bourges .\n")
+        f.write("ra:Dep_19 dbo:capital dbpedia:Tulle .\n")
+
+        f.write("ra:Dep_2A dbo:capital dbpedia:Ajaccio .\n")
+        f.write("ra:Dep_2B dbo:capital dbpedia:Bastia .\n")
+
+        f.write("ra:Dep_21 dbo:capital dbpedia:Dijon .\n")
+        f.write("ra:Dep_22 dbo:capital dbpedia:Saint-Brieuc .\n")
+        f.write("ra:Dep_23 dbo:capital dbpedia:Guéret .\n")
+        f.write("ra:Dep_24 dbo:capital dbpedia:Périgueux .\n")
+        f.write("ra:Dep_25 dbo:capital dbpedia:Besançon .\n")
+        f.write("ra:Dep_26 dbo:capital dbpedia:Valence .\n")
+        f.write("ra:Dep_27 dbo:capital dbpedia:Évreux .\n")
+        f.write("ra:Dep_28 dbo:capital dbpedia:Chartres .\n")
+        f.write("ra:Dep_29 dbo:capital dbpedia:Quimper .\n")
+
+        f.write("ra:Dep_30 dbo:capital dbpedia:Nîmes .\n")
+        f.write("ra:Dep_31 dbo:capital dbpedia:Toulouse .\n")
+        f.write("ra:Dep_32 dbo:capital dbpedia:Auch .\n")
+        f.write("ra:Dep_33 dbo:capital dbpedia:Bordeaux .\n")
+        f.write("ra:Dep_34 dbo:capital dbpedia:Montpellier .\n")
+        f.write("ra:Dep_35 dbo:capital dbpedia:Rennes .\n")
+        f.write("ra:Dep_36 dbo:capital dbpedia:Châteauroux .\n")
+        f.write("ra:Dep_37 dbo:capital dbpedia:Tours .\n")
+        f.write("ra:Dep_38 dbo:capital dbpedia:Grenoble .\n")
+        f.write("ra:Dep_39 dbo:capital dbpedia:Lons-le-Saunier .\n")
+        f.write("ra:Dep_40 dbo:capital dbpedia:Mont-de-Marsan .\n")
+        f.write("ra:Dep_41 dbo:capital dbpedia:Blois .\n")
+        f.write("ra:Dep_42 dbo:capital dbpedia:Saint-Étienne .\n")
+        f.write("ra:Dep_43 dbo:capital dbpedia:Le_Puy-en-Velay .\n")
+        f.write("ra:Dep_44 dbo:capital dbpedia:Nantes .\n")
+        f.write("ra:Dep_45 dbo:capital dbpedia:Orléans .\n")
+        f.write("ra:Dep_46 dbo:capital dbpedia:Cahors .\n")
+        f.write("ra:Dep_47 dbo:capital dbpedia:Agen .\n")
+        f.write("ra:Dep_48 dbo:capital dbpedia:Mende .\n")
+        f.write("ra:Dep_49 dbo:capital dbpedia:Angers .\n")
+
+        f.write("ra:Dep_50 dbo:capital dbpedia:Saint-Lô .\n")
+        f.write("ra:Dep_51 dbo:capital dbpedia:Châlons-en-Champagne .\n")
+        f.write("ra:Dep_52 dbo:capital dbpedia:Chaumont .\n")
+        f.write("ra:Dep_53 dbo:capital dbpedia:Laval .\n")
+        f.write("ra:Dep_54 dbo:capital dbpedia:Nancy .\n")
+        f.write("ra:Dep_55 dbo:capital dbpedia:Bar-le-Duc .\n")
+        f.write("ra:Dep_56 dbo:capital dbpedia:Vannes .\n")
+        f.write("ra:Dep_57 dbo:capital dbpedia:Metz .\n")
+        f.write("ra:Dep_58 dbo:capital dbpedia:Nevers .\n")
+        f.write("ra:Dep_59 dbo:capital dbpedia:Lille .\n")
+
+        f.write("ra:Dep_60 dbo:capital dbpedia:Beauvais .\n")
+        f.write("ra:Dep_61 dbo:capital dbpedia:Alençon .\n")
+        f.write("ra:Dep_62 dbo:capital dbpedia:Arras .\n")
+        f.write("ra:Dep_63 dbo:capital dbpedia:Clermont-Ferrand .\n")
+        f.write("ra:Dep_64 dbo:capital dbpedia:Pau .\n")
+        f.write("ra:Dep_65 dbo:capital dbpedia:Tarbes .\n")
+        f.write("ra:Dep_66 dbo:capital dbpedia:Perpignan .\n")
+        f.write("ra:Dep_67 dbo:capital dbpedia:Strasbourg .\n")
+        f.write("ra:Dep_68 dbo:capital dbpedia:Colmar .\n")
+        f.write("ra:Dep_69 dbo:capital dbpedia:Lyon .\n")
+
+        f.write("ra:Dep_70 dbo:capital dbpedia:Vesoul .\n")
+        f.write("ra:Dep_71 dbo:capital dbpedia:Mâcon .\n")
+        f.write("ra:Dep_72 dbo:capital dbpedia:Le_Mans .\n")
+        f.write("ra:Dep_73 dbo:capital dbpedia:Chambéry .\n")
+        f.write("ra:Dep_74 dbo:capital dbpedia:Annecy .\n")
+        f.write("ra:Dep_75 dbo:capital dbpedia:Paris .\n")
+        f.write("ra:Dep_76 dbo:capital dbpedia:Rouen .\n")
+        f.write("ra:Dep_77 dbo:capital dbpedia:Melun .\n")
+        f.write("ra:Dep_78 dbo:capital dbpedia:Versailles .\n")
+        f.write("ra:Dep_79 dbo:capital dbpedia:Niort .\n")
+
+        f.write("ra:Dep_80 dbo:capital dbpedia:Amiens .\n")
+        f.write("ra:Dep_81 dbo:capital dbpedia:Albi .\n")
+        f.write("ra:Dep_82 dbo:capital dbpedia:Montauban .\n")
+        f.write("ra:Dep_83 dbo:capital dbpedia:Toulon .\n")
+        f.write("ra:Dep_84 dbo:capital dbpedia:Avignon .\n")
+        f.write("ra:Dep_85 dbo:capital dbpedia:La_Roche-sur-Yon .\n")
+        f.write("ra:Dep_86 dbo:capital dbpedia:Poitiers .\n")
+        f.write("ra:Dep_87 dbo:capital dbpedia:Limoges .\n")
+        f.write("ra:Dep_88 dbo:capital dbpedia:Épinal .\n")
+        f.write("ra:Dep_89 dbo:capital dbpedia:Auxerre .\n")
+        f.write("ra:Dep_90 dbo:capital dbpedia:Belfort .\n")
+        f.write("ra:Dep_91 dbo:capital dbpedia:Évry .\n")
+        f.write("ra:Dep_92 dbo:capital dbpedia:Nanterre .\n")
+        f.write("ra:Dep_93 dbo:capital dbpedia:Bobigny .\n")
+        f.write("ra:Dep_94 dbo:capital dbpedia:Créteil .\n")
+        f.write("ra:Dep_95 dbo:capital dbpedia:Pontoise .\n")
+
+        
+        f.write("\n")
+
         
     def read_caract(self):
         """Read caract-2024.csv and store accident characteristics"""
@@ -181,6 +300,9 @@ class CSVToTTLConverter:
         for num_acc, data in self.accidents.items():
             f.write(f"ra:Acc_{num_acc} a ra:RoadAccident ;\n")
             
+            if data['dep']:
+                f.write(f"  ra:inDepartment ra:Dep_{data['dep']} ;\n")
+            
             if data['jour']:
                 f.write(f"  ra:jour {data['jour']} ;\n")
             if data['mois']:
@@ -191,8 +313,8 @@ class CSVToTTLConverter:
                 f.write(f'  ra:hrmn "{data["hrmn"]}" ;\n')
             if data['lum']:
                 f.write(f"  ra:lum {data['lum']} ;\n")
-            if data['dep']:
-                f.write(f"  ra:dep {data['dep']} ;\n")
+            # if data['dep']:
+            #     f.write(f"  ra:dep {data['dep']} ;\n")
             if data['com']:
                 f.write(f"  ra:com {data['com']} ;\n")
             if data['agg']:
@@ -382,6 +504,7 @@ class CSVToTTLConverter:
         print(f"\nWriting TTL file to {self.output_file}...")
         with open(self.output_file, 'w', encoding='utf-8') as f:
             self.write_header(f)
+            self.write_departements(f)
             self.write_accidents(f)
             self.write_lieux(f)
             self.write_vehicules(f)
@@ -401,7 +524,7 @@ def main():
     script_dir = Path(__file__).parent
     project_dir = script_dir.parent
     data_dir = project_dir / "data"
-    output_file = project_dir / "protege" / "instances.ttl"
+    output_file = project_dir / "output" / "instances.ttl"
     
     # Create converter and run
     converter = CSVToTTLConverter(data_dir, output_file)
