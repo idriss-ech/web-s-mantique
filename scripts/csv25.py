@@ -7,7 +7,8 @@ from rdflib.namespace import XSD, FOAF
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(BASE_DIR) # Assuming script is in scripts/
 DATA_DIR = os.path.join(PROJECT_ROOT, 'data')
-OUTPUT_FILE = os.path.join(PROJECT_ROOT, 'accidents25.ttl')
+OUTPUT_FILE = os.path.join(PROJECT_ROOT, 'output', 'accidents25.ttl')
+
 
 # Define Namespaces
 ONTO_NS = Namespace("http://www.semanticweb.org/ontologies/accidents-routiers-v2#")

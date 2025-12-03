@@ -1,0 +1,410 @@
+@prefix : <http://www.semanticweb.org/ontologies/accidents-routiers-v2#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@base <http://www.semanticweb.org/ontologies/accidents-routiers-v2#> .
+
+<http://www.semanticweb.org/ontologies/accidents-routiers-v2> rdf:type owl:Ontology ;
+    rdfs:label "Ontologie des Accidents Routiers en France (V2 - Simplifiée)"@fr ;
+    rdfs:comment "Ontologie refactorisée pour utiliser des propriétés de données pour les attributs (codes BAAC)."@fr .
+
+#################################################################
+#    Classes Principales
+#################################################################
+
+###  Accident
+:Accident rdf:type owl:Class ;
+    rdfs:label "Accident"@fr ;
+    rdfs:comment "Correspond à la rubrique CARACTERISTIQUES"@fr .
+
+###  Lieu
+:Lieu rdf:type owl:Class ;
+    rdfs:label "Lieu"@fr ;
+    rdfs:comment "Correspond à la rubrique LIEUX"@fr .
+
+###  Vehicule
+:Vehicule rdf:type owl:Class ;
+    rdfs:label "Véhicule"@fr ;
+    rdfs:comment "Correspond à la rubrique VEHICULES"@fr .
+
+###  Usager
+:Usager rdf:type owl:Class ;
+    rdfs:label "Usager"@fr ;
+    rdfs:comment "Correspond à la rubrique USAGERS"@fr ;
+    rdfs:subClassOf foaf:Person .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  aLieu
+:aLieu rdf:type owl:ObjectProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range :Lieu ;
+    rdfs:label "a lieu"@fr .
+
+###  impliqueVehicule
+:impliqueVehicule rdf:type owl:ObjectProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range :Vehicule ;
+    rdfs:label "implique véhicule"@fr .
+
+###  impliqueUsager
+:impliqueUsager rdf:type owl:ObjectProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range :Usager ;
+    rdfs:label "implique usager"@fr .
+
+###  occupationVehicule
+:occupationVehicule rdf:type owl:ObjectProperty ;
+    rdfs:domain :Usager ;
+    rdfs:range :Vehicule ;
+    rdfs:label "occupe véhicule"@fr ;
+    rdfs:comment "Lien entre l'usager et le véhicule qu'il occupait (conducteur ou passager)"@fr .
+
+###  departementDBpedia
+:departementDBpedia rdf:type owl:ObjectProperty ;
+    rdfs:domain :Accident ;
+    rdfs:label "département DBpedia"@fr ;
+    rdfs:comment "Lien vers la ressource DBpedia du département"@fr .
+
+#################################################################
+#    Data Properties - Rubrique CARACTERISTIQUES
+#################################################################
+
+:numAcc rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range xsd:string ;
+    rdfs:label "Numéro d'accident"@fr .
+
+:jour rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Jour"@fr .
+
+:mois rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Mois"@fr .
+
+:annee rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Année"@fr .
+
+:heure rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range xsd:string ;
+    rdfs:label "Heure et minutes"@fr ;
+    rdfs:comment "Format hrmn"@fr .
+
+:luminosite rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Luminosité"@fr ;
+    rdfs:comment "1: Plein jour, 2: Crépuscule/aube, 3: Nuit sans éclairage, 4: Nuit avec éclairage non allumé, 5: Nuit avec éclairage allumé"@fr .
+
+:departement rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range xsd:string ;
+    rdfs:label "Département"@fr .
+
+:commune rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range xsd:string ;
+    rdfs:label "Commune"@fr .
+
+:localisation rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Localisation (Agglomération)"@fr ;
+    rdfs:comment "1: Hors agglomération, 2: En agglomération"@fr .
+
+:intersection rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Intersection"@fr ;
+    rdfs:comment "1: Hors intersection, 2: X, 3: T, 4: Y, 5: >4 branches, 6: Giratoire, 7: Place, 8: Passage à niveau, 9: Autre"@fr .
+
+:conditionAtmospherique rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Condition Atmosphérique"@fr ;
+    rdfs:comment "1: Normale, 2: Pluie légère, 3: Pluie forte, 4: Neige/grêle, 5: Brouillard/fumée, 6: Vent fort, 7: Éblouissant, 8: Couvert, 9: Autre"@fr .
+
+:typeCollision rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Type de Collision"@fr ;
+    rdfs:comment "1: 2 véh frontale, 2: 2 véh arrière, 3: 2 véh coté, 4: 3+ chaîne, 5: 3+ multiple, 6: Autre, 7: Sans collision"@fr .
+
+:adresse rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range xsd:string ;
+    rdfs:label "Adresse"@fr .
+
+:latitude rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range xsd:decimal ;
+    rdfs:subPropertyOf geo:lat .
+
+:longitude rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Accident ;
+    rdfs:range xsd:decimal ;
+    rdfs:subPropertyOf geo:long .
+
+#################################################################
+#    Data Properties - Rubrique LIEUX
+#################################################################
+
+:categorieRoute rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Lieu ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Catégorie de Route"@fr ;
+    rdfs:comment "1: Autoroute, 2: RN, 3: RD, 4: VC, 5: Hors réseau, 6: Parking, 7: Urbaine, 9: Autre"@fr .
+
+:numeroRoute rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Lieu ;
+    rdfs:range xsd:string ;
+    rdfs:label "Numéro de Route"@fr .
+
+:regimeCirculation rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Lieu ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Régime de Circulation"@fr ;
+    rdfs:comment "1: Sens unique, 2: Bidirectionnelle, 3: Chaussées séparées, 4: Voies variables"@fr .
+
+:nbVoies rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Lieu ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Nombre de voies"@fr .
+
+:profilLong rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Lieu ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Profil en long"@fr ;
+    rdfs:comment "1: Plat, 2: Pente, 3: Sommet côte, 4: Bas côte"@fr .
+
+:tracePlan rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Lieu ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Tracé en plan"@fr ;
+    rdfs:comment "1: Rectiligne, 2: Courbe gauche, 3: Courbe droite, 4: S"@fr .
+
+:etatSurface rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Lieu ;
+    rdfs:range xsd:integer ;
+    rdfs:label "État de la Surface"@fr ;
+    rdfs:comment "1: Normale, 2: Mouillée, 3: Flaques, 4: Inondée, 5: Enneigée, 6: Boue, 7: Verglacée, 8: Gras/Huile, 9: Autre"@fr .
+
+:infrastructure rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Lieu ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Infrastructure"@fr ;
+    rdfs:comment "0: Aucun, 1: Tunnel, 2: Pont, 3: Bretelle, 4: Voie ferrée, 5: Carrefour, 6: Piétonne, 7: Péage, 8: Chantier, 9: Autre"@fr .
+
+:situation rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Lieu ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Situation"@fr ;
+    rdfs:comment "1: Chaussée, 2: BAU, 3: Accotement, 4: Trottoir, 5: Piste cyclable"@fr .
+
+:vitesseMax rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Lieu ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Vitesse Max Autorisée"@fr .
+
+:indiceNumero1 rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Lieu ;
+    rdfs:range xsd:string ;
+    rdfs:label "Indice de numérotation 1"@fr ;
+    rdfs:comment "Premier indice numérique de la route (v1)"@fr .
+
+:indiceNumero2 rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Lieu ;
+    rdfs:range xsd:string ;
+    rdfs:label "Indice de numérotation 2"@fr ;
+    rdfs:comment "Deuxième indice numérique de la route (v2)"@fr .
+
+:voieReservee rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Lieu ;
+    rdfs:range xsd:string ;
+    rdfs:label "Voie Réservée"@fr ;
+    rdfs:comment "1: Piste cyclable, 2: Bande cyclable, 3: Voie réservée"@fr .
+
+:pointRepere rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Lieu ;
+    rdfs:range xsd:string ;
+    rdfs:label "Point de Repère"@fr ;
+    rdfs:comment "Point de repère (pr)"@fr .
+
+:distancePointRepere rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Lieu ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Distance au Point de Repère"@fr ;
+    rdfs:comment "Distance au point de repère en mètres (pr1)"@fr .
+
+:largeurTerrePlein rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Lieu ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "Largeur Terre-plein Central"@fr ;
+    rdfs:comment "Largeur du terre-plein central en mètres (lartpc)"@fr .
+
+:largeurRoute rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Lieu ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "Largeur de la Route"@fr ;
+    rdfs:comment "Largeur de la route en mètres (larrout)"@fr .
+
+#################################################################
+#    Data Properties - Rubrique VEHICULES
+#################################################################
+
+:idVehicule rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Vehicule ;
+    rdfs:range xsd:string ;
+    rdfs:label "ID Véhicule"@fr .
+
+:sensCirculation rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Vehicule ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Sens de Circulation"@fr ;
+    rdfs:comment "0: Inconnu, 1: Croissant, 2: Décroissant"@fr .
+
+:categorieVehicule rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Vehicule ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Catégorie Véhicule"@fr ;
+    rdfs:comment "07: VL, 10: VU, 33: Moto > 125, etc. (Voir doc BAAC)"@fr .
+
+:obstacleFixe rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Vehicule ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Obstacle Fixe Heurté"@fr ;
+    rdfs:comment "0: Sans, 1: Véhicule stationné, 2: Arbre, 3: Glissière, etc."@fr .
+
+:obstacleMobile rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Vehicule ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Obstacle Mobile Heurté"@fr ;
+    rdfs:comment "0: Aucun, 1: Piéton, 2: Véhicule, 4: Rail, 5: Animal domestique, 6: Animal sauvage"@fr .
+
+:pointChoc rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Vehicule ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Point de Choc"@fr ;
+    rdfs:comment "1: Avant, 2: Avant droit, 3: Avant gauche, 4: Arrière, etc."@fr .
+
+:manoeuvre rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Vehicule ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Manoeuvre"@fr ;
+    rdfs:comment "1: Sans changement, 15: Tourne gauche, 16: Tourne droite, 17: Dépasse gauche, etc."@fr .
+
+:motorisation rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Vehicule ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Motorisation"@fr ;
+    rdfs:comment "1: Hydrocarbures, 2: Hybride, 3: Electrique, 4: Hydrogène, 5: Humaine"@fr .
+
+:numeroVehicule rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Vehicule ;
+    rdfs:range xsd:string ;
+    rdfs:label "Numéro de Véhicule"@fr ;
+    rdfs:comment "Numéro du véhicule dans l'accident (num_veh)"@fr .
+
+:occupantsTransportCommun rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Vehicule ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Occupants Transport en Commun"@fr ;
+    rdfs:comment "Nombre d'occupants dans les transports en commun (occutc)"@fr .
+
+#################################################################
+#    Data Properties - Rubrique USAGERS
+#################################################################
+
+:idUsager rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Usager ;
+    rdfs:range xsd:string ;
+    rdfs:label "ID Usager"@fr .
+
+:place rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Usager ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Place dans le véhicule"@fr .
+
+:categorieUsager rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Usager ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Catégorie Usager"@fr ;
+    rdfs:comment "1: Conducteur, 2: Passager, 3: Piéton"@fr .
+
+:gravite rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Usager ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Gravité"@fr ;
+    rdfs:comment "1: Indemne, 2: Tué, 3: Blessé hospitalisé, 4: Blessé léger"@fr .
+
+:sexe rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Usager ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Sexe"@fr ;
+    rdfs:comment "1: Masculin, 2: Féminin"@fr .
+
+:anneeNaissance rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Usager ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Année de Naissance"@fr .
+
+:motifDeplacement rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Usager ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Motif de Déplacement"@fr ;
+    rdfs:comment "1: Domicile-travail, 2: Domicile-école, 3: Courses, 4: Pro, 5: Loisirs"@fr .
+
+:equipementSecurite rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Usager ;
+    rdfs:range xsd:string ;
+    rdfs:label "Équipement de Sécurité 1"@fr ;
+    rdfs:comment "1: Ceinture, 2: Casque, 3: Dispositif enfant, 4: Gilet, etc."@fr .
+
+:equipementSecurite2 rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Usager ;
+    rdfs:range xsd:string ;
+    rdfs:label "Équipement de Sécurité 2"@fr ;
+    rdfs:comment "Deuxième équipement de sécurité (secu2)"@fr .
+
+:equipementSecurite3 rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Usager ;
+    rdfs:range xsd:string ;
+    rdfs:label "Équipement de Sécurité 3"@fr ;
+    rdfs:comment "Troisième équipement de sécurité (secu3)"@fr .
+
+:numeroVehiculeUsager rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Usager ;
+    rdfs:range xsd:string ;
+    rdfs:label "Numéro de Véhicule (Usager)"@fr ;
+    rdfs:comment "Numéro du véhicule associé à l'usager (num_veh)"@fr .
+
+:localisationPieton rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Usager ;
+    rdfs:range xsd:string ;
+    rdfs:label "Localisation du Piéton"@fr ;
+    rdfs:comment "1: A + 50m passage piéton, 2: A - 50m, 3: Sur passage sans signal, 4: Sur passage avec signal, 5: Trottoir, 6: Accotement, 7: Refuge/BAU, 8: Contre allée"@fr .
+
+:actionPieton rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Usager ;
+    rdfs:range xsd:string ;
+    rdfs:label "Action du Piéton"@fr ;
+    rdfs:comment "0: Non renseigné, 1: Sens véhicule heurtant, 2: Sens inverse, 3: Traversant, 4: Masqué, 5: Jouant/courant, 6: Avec animal, 9: Autre"@fr .
+
+:etatPieton rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Usager ;
+    rdfs:range xsd:string ;
+    rdfs:label "État du Piéton"@fr ;
+    rdfs:comment "1: Seul, 2: Accompagné, 3: En groupe"@fr .
