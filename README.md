@@ -49,22 +49,19 @@ Nous avons identifié **deux sources de données** sur les accidents routiers de
 
 ### Nettoyage et Normalisation
 
-#### Hétérogénéités de Codage
-Les valeurs manquantes étaient représentées de manière inconsistante dans les données brutes :
+**Hétérogénéités de Codage** : Les valeurs manquantes étaient représentées de manière inconsistante dans les données brutes :
 - Codes `-1` ou `0` 
 - Chaînes vides `""`
 - Absence complète de valeur
 
 **Solution adoptée** : Uniformisation en valeur nulle (absence de triplet RDF) pour éviter des faux signaux dans les requêtes SPARQL.
 
-#### Normalisation des Types
-Conversion explicite et rigoureuse des types de données :
+**Normalisation des Types** : Conversion explicite et rigoureuse des types de données :
 - **Entiers** : jour, mois, année, gravité, luminosité, etc.
 - **Chaînes** : heure (hrmn), adresse, identifiants
 - **Décimaux** : coordonnées géographiques (latitude, longitude), largeurs
 
-#### Réduction du Volume
-Pour optimiser les performances et faciliter les tests :
+**Réduction du Volume** : Pour optimiser les performances et faciliter les tests :
 - Conservation de **1/3 des données** du dataset complet
 - Maintien de la représentativité statistique
 - Obtention de temps de réponse SPARQL acceptables
@@ -126,35 +123,57 @@ Nous avons suivi **deux approches parallèles** pour concevoir l'ontologie optim
 
 ### Décision Finale : Approche Hybride
 
-Nous avons opté pour une **combinaison des deux approches** :
-
-#### Propriétés de Données (Data Properties)
-
-**45 propriétés** couvrant l'intégralité des champs BAAC, organisées par rubrique :
-- Caractéristiques temporelles et contextuelles (13 propriétés)
-- Infrastructure et localisation (14 propriétés)
-- Véhicules et manœuvres (9 propriétés)
-- Usagers et gravité (9 propriétés)
-
-**Choix de modélisation** : Les caractéristiques contextuelles (luminosité, gravité, catégorie véhicule) sont des **datatype properties** plutôt que des classes séparées pour :
+Nous avons opté pour une **Data-Driven** en s'inspirant des avantages faites par **Ontology-Driven** :
+Ces avantages sont d'avoir des caractéristiques contextuelles (luminosité, gravité, catégorie véhicule) en **datatype properties** plutôt que des classes séparées pour :
 - Faciliter l'agrégation dans les requêtes SPARQL
 - Éviter l'explosion du nombre de triplets
-- Simplifier la maintenance
 
-#### Propriétés d'Objets (Object Properties)
 
-Les relations dynamiques entre classes :
+-> Critères de Choix Retenus
+1. **Lisibilité et Maintenabilité** : Hiérarchie claire avec 4 classes principales
+2. **Parcimonie** : Utilisation de datatype properties quand la granularité ne justifie pas une classe séparée
+3. **Alignabilité** : Possibilité future de lier à des référentiels externes (DBpedia, GeoNames)
+
+
+-> Le projet faite avec  l'approche « Ontology-Driven » (Top-Down) est dans le dossier "*old version*"
+
+
+
+## Ontologie
+
+
+L'ontologie comprend **45 propriétés de données** couvrant **100%** des champs BAAC.
+
+### Classes Principales
+
+| Classe | Description | URI |
+|--------|-------------|-----|
+| `Accident` | Événement accidentel | `:Accident` |
+| `Lieu` | Localisation et infrastructure | `:Lieu` |
+| `Vehicule` | Véhicules impliqués | `:Vehicule` |
+| `Usager` | Personnes impliquées | `:Usager` |
+
+### Propriétés Objets
+
 - `aLieu` : Accident → Lieu
 - `impliqueVehicule` : Accident → Vehicule
 - `impliqueUsager` : Accident → Usager
 - `occupationVehicule` : Usager → Vehicule
 - `departementDBpedia` : Accident → DBpedia Resource
 
-### Critères de Choix Retenus
+### Namespaces Utilisés
 
-1. **Lisibilité et Maintenabilité** : Hiérarchie claire avec 4 classes principales
-2. **Parcimonie** : Utilisation de datatype properties quand la granularité ne justifie pas une classe séparée
-3. **Alignabilité** : Possibilité future de lier à des référentiels externes (DBpedia, GeoNames)
+```turtle
+@prefix : <http://www.semanticweb.org/ontologies/accidents-routiers-v2#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+```
+
 
 
 
@@ -264,7 +283,6 @@ projet/
 └── README.md                   # Ce fichier
 ```
 
-
 ## Installation et Utilisation
 
 
@@ -305,7 +323,7 @@ python scripts/csv25.py
 
 **Résultat :** Le fichier `output/accidents25.ttl` est créé avec le graphe RDF complet
 
----
+
 
 
 ## Mapping CSV vers RDF : Méthodologie
@@ -414,45 +432,7 @@ Stratégie de gestion :
 - **Codes invalides** : Triplet avec valeur brute + log d'avertissement
 - **Champs optionnels** : Vérification de présence avant génération
 
----
 
-
-## Ontologie
-
-
-L'ontologie comprend **45 propriétés de données** couvrant **100%** des champs BAAC.
-
-### Classes Principales
-
-| Classe | Description | URI |
-|--------|-------------|-----|
-| `Accident` | Événement accidentel | `:Accident` |
-| `Lieu` | Localisation et infrastructure | `:Lieu` |
-| `Vehicule` | Véhicules impliqués | `:Vehicule` |
-| `Usager` | Personnes impliquées | `:Usager` |
-
-### Propriétés Objets
-
-- `aLieu` : Accident → Lieu
-- `impliqueVehicule` : Accident → Vehicule
-- `impliqueUsager` : Accident → Usager
-- `occupationVehicule` : Usager → Vehicule
-- `departementDBpedia` : Accident → DBpedia Resource
-
-### Namespaces Utilisés
-
-```turtle
-@prefix : <http://www.semanticweb.org/ontologies/accidents-routiers-v2#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
-@prefix dbo: <http://dbpedia.org/ontology/> .
-```
-
----
 
 
 ## Requêtes SPARQL : Fusion et Analyse
@@ -471,7 +451,6 @@ Le graphe RDF résultant permet d'exécuter des requêtes SPARQL complexes pour 
 - **Analyse temporelle** : Pics horaires, saisonnalité
 - **Enrichissement externe** : Lier population/superficie via DBpedia pour calculer des taux d'accidents
 
----
 
 
 ## Exemples de Requêtes SPARQL
