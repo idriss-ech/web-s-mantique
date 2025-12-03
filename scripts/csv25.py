@@ -429,6 +429,10 @@ if __name__ == "__main__":
     process_vehicules()
     process_usagers()
     
+    # Create output directory if it doesn't exist
+    output_dir = os.path.dirname(OUTPUT_FILE)
+    os.makedirs(output_dir, exist_ok=True)
+    
     print(f"Saving graph to {OUTPUT_FILE}...")
     g.serialize(destination=OUTPUT_FILE, format='turtle')
     print("Done.")

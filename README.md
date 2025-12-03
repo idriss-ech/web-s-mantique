@@ -18,7 +18,6 @@
 
 Ce projet implémente une **ontologie sémantique complète** pour l'analyse des accidents routiers en France. Il transforme les données BAAC (Bulletin d'Analyse des Accidents Corporels) en graphe RDF, permettant des requêtes SPARQL avancées et une intégration avec DBpedia.
 
----
 
 
 ## Objectifs du Projet
@@ -29,7 +28,175 @@ Ce projet implémente une **ontologie sémantique complète** pour l'analyse des
 - Intégrer les données géographiques avec DBpedia
 - Permettre des requêtes SPARQL complexes sur les données d'accidents
 
----
+
+## Source des Données
+
+[![Data Source](https://img.shields.io/badge/Data-data.gouv.fr-blue?style=for-the-badge)](https://www.data.gouv.fr/datasets/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2024)
+
+Les données proviennent de la **[base BAAC (Bulletins d'Analyse des Accidents Corporels)](https://www.data.gouv.fr/datasets/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2024)** mise à disposition par le gouvernement français sur data.gouv.fr.
+
+**Dataset utilisé :** Bases de données annuelles des accidents corporels de la circulation routière - **Année 2024 uniquement**
+
+> **Note :** Ce projet se concentre exclusivement sur les données de l'année 2024. Le dataset complet couvre les années 2005 à 2024, mais seules les données 2024 ont été utilisées pour cette analyse.
+
+Les fichiers de référence permettent de convertir les codes BAAC en libellés lisibles (ex: code "1" → "Plein jour" pour la luminosité).
+
+
+## Analyse et Qualité des Données
+
+
+Nous avons identifié **deux sources de données** sur les accidents routiers de 2024 et procédé à une analyse structurelle approfondie avant la modélisation.
+
+### Nettoyage et Normalisation
+
+#### Hétérogénéités de Codage
+Les valeurs manquantes étaient représentées de manière inconsistante dans les données brutes :
+- Codes `-1` ou `0` 
+- Chaînes vides `""`
+- Absence complète de valeur
+
+**Solution adoptée** : Uniformisation en valeur nulle (absence de triplet RDF) pour éviter des faux signaux dans les requêtes SPARQL.
+
+#### Normalisation des Types
+Conversion explicite et rigoureuse des types de données :
+- **Entiers** : jour, mois, année, gravité, luminosité, etc.
+- **Chaînes** : heure (hrmn), adresse, identifiants
+- **Décimaux** : coordonnées géographiques (latitude, longitude), largeurs
+
+#### Réduction du Volume
+Pour optimiser les performances et faciliter les tests :
+- Conservation de **1/3 des données** du dataset complet
+- Maintien de la représentativité statistique
+- Obtention de temps de réponse SPARQL acceptables
+
+### Limites de la Fusion Inter-sources
+
+La fusion automatique des deux bases n'a pas été possible pour les raisons suivantes :
+
+> [!WARNING]
+> **Obstacles Techniques à la Fusion**
+
+1. **Identifiants Non Correspondants** : Les identifiants d'accident (`Num_Acc`) ne correspondaient pas entre les deux sources.
+
+2. **Attributs Discriminants Manquants** : La deuxième source manquait d'attributs critiques :
+   - Heure précise de l'accident
+   - Géolocalisation fine (latitude/longitude)
+   
+3. **Absence de Quasi-Identifiants** : Aucune combinaison stable de clés (date + lieu + véhicule) n'était simultanément présente et suffisamment complète dans les deux fichiers.
+
+**Conséquence** : Nous avons choisi de travailler avec **une seule base de données** de qualité supérieure plutôt que de risquer une fusion inexacte.
+
+
+
+## Construction de l'Ontologie
+
+
+Nous avons suivi **deux approches parallèles** pour concevoir l'ontologie optimale :
+
+### 1. Approche « Data-Driven » (Bottom-Up)
+
+**Principe** : Dériver les classes et propriétés directement des colonnes observées dans les CSV.
+
+**Méthode** :
+- Groupement sémantique des attributs
+- Identification des relations naturelles entre tables
+- Mapping direct colonnes → propriétés RDF
+
+**Avantages** :
+- Couverture maximale des données (100% des champs BAAC)
+- Alignement parfait avec la structure source
+
+**Inconvénients** :
+- Risque de sur-spécialisation aux structures tabulaires
+- Moins de réutilisabilité et d'interopérabilité
+
+### 2. Approche « Ontology-Driven » (Top-Down)
+
+**Principe** : Partir d'une ontologie existante liée au domaine des accidents et l'adapter.
+
+**Processus** :
+1. **Élagage** : Suppression des classes/propriétés non utilisées
+2. **Enrichissement** : Ajout de classes spécifiques manquantes
+3. **Spécialisation** : Adaptation au contexte français (départements, communes)
+
+**Avantages** :
+- Alignement avec standards existants
+- Meilleure interopérabilité future
+- Hiérarchie claire et maintenable
+
+### Décision Finale : Approche Hybride
+
+Nous avons opté pour une **combinaison des deux approches** :
+
+#### Propriétés de Données (Data Properties)
+
+**45 propriétés** couvrant l'intégralité des champs BAAC, organisées par rubrique :
+- Caractéristiques temporelles et contextuelles (13 propriétés)
+- Infrastructure et localisation (14 propriétés)
+- Véhicules et manœuvres (9 propriétés)
+- Usagers et gravité (9 propriétés)
+
+**Choix de modélisation** : Les caractéristiques contextuelles (luminosité, gravité, catégorie véhicule) sont des **datatype properties** plutôt que des classes séparées pour :
+- Faciliter l'agrégation dans les requêtes SPARQL
+- Éviter l'explosion du nombre de triplets
+- Simplifier la maintenance
+
+#### Propriétés d'Objets (Object Properties)
+
+Les relations dynamiques entre classes :
+- `aLieu` : Accident → Lieu
+- `impliqueVehicule` : Accident → Vehicule
+- `impliqueUsager` : Accident → Usager
+- `occupationVehicule` : Usager → Vehicule
+- `departementDBpedia` : Accident → DBpedia Resource
+
+### Critères de Choix Retenus
+
+1. **Lisibilité et Maintenabilité** : Hiérarchie claire avec 4 classes principales
+2. **Parcimonie** : Utilisation de datatype properties quand la granularité ne justifie pas une classe séparée
+3. **Alignabilité** : Possibilité future de lier à des référentiels externes (DBpedia, GeoNames)
+
+
+
+## Intégration DBpedia (Linked Data)
+
+
+### Liaison avec les Départements Français
+
+Nous avons enrichi notre graphe RDF en liant chaque accident à la ressource DBpedia du département correspondant via la propriété `departementDBpedia`.
+
+**Exemple de triplet** :
+```turtle
+:Accident_2024001234 :departementDBpedia <http://fr.dbpedia.org/resource/Isère> .
+```
+
+### Données Enrichies Disponibles
+
+Une fois lié à DBpedia, chaque département donne accès à :
+- **Population totale** (`dbo:populationTotal`)
+- **Superficie** (`dbo:areaTotal`)
+- **Préfecture** (`dbo:capital`)
+- **Région administrative**
+- **Liens Wikipédia** et autres ressources
+
+### Requêtes Fédérées SPARQL
+
+Grâce au SERVICE endpoint, nous pouvons interroger simultanément :
+- Notre graphe local (accidents)
+- DBpedia FR (données départementales)
+
+Voir [Requête 3 : Intégration DBpedia](#requête-3--intégration-dbpedia-url-cliquable) pour un exemple concret.
+
+### Tentatives et Limites
+
+> [!NOTE]
+> **Travaux Non Finalisés**
+
+Nous avons également tenté de :
+- Lier les coordonnées GPS (`latitude`, `longitude`) au vocabulaire **GEO** (WGS84)
+- Les propriétés `:latitude` et `:longitude` sont des sous-propriétés de `geo:lat` et `geo:long`
+
+**Raison** : Manque de temps pour finaliser l'alignement complet avec les ontologies géospatiales.
 
 
 ## Technologies & Outils
@@ -61,17 +228,13 @@ Ce projet implémente une **ontologie sémantique complète** pour l'analyse des
 
 Le projet se compose de **4 classes principales** interconnectées :
 
-### Accident
-Caractéristiques temporelles et géographiques de l'événement
+- **Accident**: Caractéristiques temporelles et géographiques de l'événement
 
-### Lieu
-Détails de la localisation et infrastructure routière
+- **Lieu**: Détails de la localisation et infrastructure routière
 
-### Véhicule
-Informations sur les véhicules impliqués
+- **Véhicule**: Informations sur les véhicules impliqués
 
-### Usager
-Données sur les personnes impliquées
+- **Usager**: Données sur les personnes impliquées
 
 ---
 
@@ -100,23 +263,6 @@ projet/
 ├── assets/                     # Images et documentation
 └── README.md                   # Ce fichier
 ```
-
----
-
-
-## Source des Données
-
-[![Data Source](https://img.shields.io/badge/Data-data.gouv.fr-blue?style=for-the-badge)](https://www.data.gouv.fr/datasets/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2024)
-
-Les données proviennent de la **[base BAAC (Bulletins d'Analyse des Accidents Corporels)](https://www.data.gouv.fr/datasets/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2024)** mise à disposition par le gouvernement français sur data.gouv.fr.
-
-**Dataset utilisé :** Bases de données annuelles des accidents corporels de la circulation routière - **Année 2024 uniquement**
-
-> **Note :** Ce projet se concentre exclusivement sur les données de l'année 2024. Le dataset complet couvre les années 2005 à 2024, mais seules les données 2024 ont été utilisées pour cette analyse.
-
-Les fichiers de référence permettent de convertir les codes BAAC en libellés lisibles (ex: code "1" → "Plein jour" pour la luminosité).
-
----
 
 
 ## Installation et Utilisation
@@ -162,6 +308,115 @@ python scripts/csv25.py
 ---
 
 
+## Mapping CSV vers RDF : Méthodologie
+
+
+Le script [`scripts/csv25.py`](scripts/csv25.py) effectue le mapping complet des fichiers CSV vers le graphe RDF en suivant une méthodologie rigoureuse.
+
+### Approche Adoptée
+
+#### 1. Normalisation des Identifiants (IRIs Stables)
+
+Chaque entité reçoit une IRI unique et stable construite à partir de :
+- **Classe de l'entité** (Accident, Lieu, Vehicule, Usager)
+- **Identifiant primaire** de la table source
+
+**Exemples d'IRIs** :
+```turtle
+:Accident_2024001234 rdf:type :Accident .
+:Lieu_2024001234 rdf:type :Lieu .
+:Vehicule_2024001234_01 rdf:type :Vehicule .
+:Usager_2024001234_01_001 rdf:type :Usager .
+```
+
+#### 2. Typage RDF Basé sur la Source
+
+Le type RDF (`rdf:type`) est automatiquement assigné selon la table CSV source :
+
+| Fichier CSV | Classe RDF | Exemple IRI |
+|-------------|-----------|-------------|
+| `caract-2024.csv` | `:Accident` | `:Accident_2024XXXXXX` |
+| `lieux-2024.csv` | `:Lieu` | `:Lieu_2024XXXXXX` |
+| `vehicules-2024.csv` | `:Vehicule` | `:Vehicule_2024XXXXXX_YY` |
+| `usagers-2024.csv` | `:Usager` | `:Usager_2024XXXXXX_YY_ZZZ` |
+
+#### 3. Alignement Colonnes → Data Properties
+
+Chaque colonne CSV est mappée vers une propriété de données de l'ontologie :
+
+**Exemple : Fichier caracteristiques.csv**
+```python
+# Colonne CSV → Propriété RDF
+jour → :jour (xsd:integer)
+mois → :mois (xsd:integer)
+an → :annee (xsd:integer)
+hrmn → :heure (xsd:string)
+lum → :luminosite (xsd:integer)  # Code transformé en libellé
+dep → :departement (xsd:string)
+lat → :latitude (xsd:decimal)
+long → :longitude (xsd:decimal)
+```
+
+#### 4. Relations Inter-Tables (Object Properties)
+
+Le script reconstruit les relations entre entités via les clés étrangères :
+
+```turtle
+# Accident → Lieu
+:Accident_2024001234 :aLieu :Lieu_2024001234 .
+
+# Accident → Vehicule
+:Accident_2024001234 :impliqueVehicule :Vehicule_2024001234_01 .
+
+# Accident → Usager
+:Accident_2024001234 :impliqueUsager :Usager_2024001234_01_001 .
+
+# Usager → Vehicule (occupation)
+:Usager_2024001234_01_001 :occupationVehicule :Vehicule_2024001234_01 .
+```
+
+### Conversion des Codes BAAC en Libellés Lisibles
+
+Les fichiers de référence (`data/ref-*/`) permettent de convertir les codes numériques en libellés complets.
+
+#### Fichiers de Référence Utilisés
+
+- `ref-carac/` : Luminosité, intersection, conditions atmosphériques, collisions
+- `ref_lieux/` : Catégorie route, régime circulation, surface, infrastructure
+- `ref-veh/` : Catégorie véhicule, obstacles, manœuvres, motorisation
+- `ref-usag/` : Catégorie usager, gravité, sexe, motif déplacement, équipements
+
+#### Exemple de Transformation
+
+**Données brutes CSV** :
+```csv
+Num_Acc,lum,atm,col
+2024001234,1,1,2
+```
+
+**Triplets RDF générés** :
+```turtle
+:Accident_2024001234 
+    :luminosite "Plein jour" ;
+    :conditionAtmospherique "Normale" ;
+    :typeCollision "Deux véhicules - par l'arrière" .
+```
+
+> [!TIP]
+> **Avantage des Libellés**
+> 
+> Les requêtes SPARQL retournent directement des résultats lisibles sans nécessiter de jointures supplémentaires avec des tables de référence.
+
+### Gestion des Valeurs Manquantes
+
+Stratégie de gestion :
+- **Valeurs nulles/vides** : Aucun triplet généré (absence d'information)
+- **Codes invalides** : Triplet avec valeur brute + log d'avertissement
+- **Champs optionnels** : Vérification de présence avant génération
+
+---
+
+
 ## Ontologie
 
 
@@ -196,6 +451,25 @@ L'ontologie comprend **45 propriétés de données** couvrant **100%** des champ
 @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix dbo: <http://dbpedia.org/ontology/> .
 ```
+
+---
+
+
+## Requêtes SPARQL : Fusion et Analyse
+
+
+Le graphe RDF résultant permet d'exécuter des requêtes SPARQL complexes pour :
+1. **Analyser les patterns d'accidents** (distribution temporelle, géographique, démographique)
+2. **Fusionner les données** des 4 tables dans un même graphe interrogeable
+3. **Enrichir via DBpedia** (données démographiques des départements)
+4. **Détecter des corrélations** (météo vs gravité, infrastructure vs type collision)
+
+### Objectifs des Requêtes
+
+- **Distribution spatiale** : Identifier les zones à risque (départements, types de routes)
+- **Corrélation usagers × gravité × véhicules** : Profiler les accidents mortels
+- **Analyse temporelle** : Pics horaires, saisonnalité
+- **Enrichissement externe** : Lier population/superficie via DBpedia pour calculer des taux d'accidents
 
 ---
 
@@ -379,40 +653,7 @@ LIMIT 20
 
 📊 [Voir les résultats](resultats_sparql/pietons_localisation.csv)
 
----
 
-
-## Caractéristiques Principales
-
-
-
-| Fonctionnalité | Status |
-|:---------------|:------:|
-| Couverture complète des champs CSV | 100% |
-| Architecture OWL solide | Validée |
-| Intégration DBpedia | Opérationnelle |
-| Conversion codes → libellés | Complète |
-| Requêtes SPARQL avancées | Supportées |
-| Documentation complète | Fournie |
-
-
----
-
-
-## Statistiques du Projet
-
-
-| Métrique | Valeur |
-|:---------|:-------|
-| **Propriétés de données** | 45 |
-| **Classes principales** | 4 |
-| **Propriétés objets** | 5 |
-| **Fichiers CSV sources** | 4 |
-| **Fichiers de référence** | 17 |
-| **Triples RDF générés** | ~2M+ |
-| **Taille fichier RDF** | ~200 MB |
-
----
 
 
 ## Documentation
@@ -420,8 +661,7 @@ LIMIT 20
 
 - [Ontologie](ontology/ontologi25.ttl) - Fichier OWL complet
 - [Script Python](scripts/csv25.py) - Code de conversion
-- [Description des données](description%20de%20jeu%20de%20donnees.pdf) - Documentation BAAC
-- [Relations](relations.pdf) - Schéma des relations
+- [Description des données](description-des-bases-de-donnees-annuelles.pdf) - Documentation BAAC
 
 ---
 
