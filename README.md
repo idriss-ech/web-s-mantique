@@ -12,6 +12,17 @@
 
 ---
 
+## Réalisé par
+
+- **Idriss Echakouki**  
+- **Beandapa Yannick**  
+
+
+[![GitHub](https://img.shields.io/badge/GitHub-idriss--ech-181717?style=for-the-badge&logo=github)](https://github.com/idriss-ech)
+
+
+---
+
 
 ## Description
 
@@ -135,7 +146,7 @@ Ces avantages sont d'avoir des caractéristiques contextuelles (luminosité, gra
 3. **Alignabilité** : Possibilité future de lier à des référentiels externes (DBpedia, GeoNames)
 
 
--> Le projet faite avec  l'approche « Ontology-Driven » (Top-Down) est dans le dossier "*old version*"
+-> Le projet faite avec  l'approche « Ontology-Driven » (Top-Down) est dans le dossier "*old_version*"
 
 
 
