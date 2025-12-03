@@ -634,6 +634,32 @@ LIMIT 20
 
 
 
+### Requête 10 : CONSTRUCT Basique "Graph Simplifié des Accidents Mortels"
+
+```sparql
+PREFIX : <http://www.semanticweb.org/ontologies/accidents-routiers-v2#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+CONSTRUCT {
+  ?accident rdf:type :AccidentMortel ;
+            :departement ?dept ;
+            :luminosite ?lum ;
+            :nbVictimes ?nbDeces .
+}
+WHERE {
+  ?accident a :Accident ;
+            :departement ?dept ;
+            :impliqueUsager ?usager .
+  ?usager :gravite "Tué" .
+}
+LIMIT 100
+```
+![Visual Graph](assets/visual_graph.png)
+
+📊 [Voir les résultats](resultats_sparql/graph_simplifie_des_accidents_mortels.ttl)
+
+
+
 
 ## Documentation
 

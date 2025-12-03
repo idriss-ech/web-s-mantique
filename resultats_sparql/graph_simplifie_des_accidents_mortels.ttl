@@ -1,0 +1,290 @@
+@prefix : <http://www.semanticweb.org/ontologies/accidents-routiers-v2#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf4j: <http://rdf4j.org/schema/rdf4j#> .
+@prefix sesame: <http://www.openrdf.org/schema/sesame#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fn: <http://www.w3.org/2005/xpath-functions#> .
+
+:Accident_202400000085 a :AccidentMortel;
+  :departement "31" .
+
+:Accident_202400000086 a :AccidentMortel;
+  :departement "43" .
+
+:Accident_202400000089 a :AccidentMortel;
+  :departement "42" .
+
+:Accident_202400000115 a :AccidentMortel;
+  :departement "95" .
+
+:Accident_202400000118 a :AccidentMortel;
+  :departement "83" .
+
+:Accident_202400000166 a :AccidentMortel;
+  :departement "86" .
+
+:Accident_202400000171 a :AccidentMortel;
+  :departement "41" .
+
+:Accident_202400000176 a :AccidentMortel;
+  :departement "57" .
+
+:Accident_202400000201 a :AccidentMortel;
+  :departement "29" .
+
+:Accident_202400000207 a :AccidentMortel;
+  :departement "18" .
+
+:Accident_202400000210 a :AccidentMortel;
+  :departement "21" .
+
+:Accident_202400000214 a :AccidentMortel;
+  :departement "28" .
+
+:Accident_202400000283 a :AccidentMortel;
+  :departement "13" .
+
+:Accident_202400000303 a :AccidentMortel;
+  :departement "91" .
+
+:Accident_202400000315 a :AccidentMortel;
+  :departement "974" .
+
+:Accident_202400000362 a :AccidentMortel;
+  :departement "972" .
+
+:Accident_202400000383 a :AccidentMortel;
+  :departement "30" .
+
+:Accident_202400000394 a :AccidentMortel;
+  :departement "70" .
+
+:Accident_202400000400 a :AccidentMortel;
+  :departement "38" .
+
+:Accident_202400000402 a :AccidentMortel;
+  :departement "69" .
+
+:Accident_202400000403 a :AccidentMortel;
+  :departement "85" .
+
+:Accident_202400000408 a :AccidentMortel;
+  :departement "22" .
+
+:Accident_202400000476 a :AccidentMortel;
+  :departement "95" .
+
+:Accident_202400000501 a :AccidentMortel;
+  :departement "59" .
+
+:Accident_202400000567 a :AccidentMortel;
+  :departement "80" .
+
+:Accident_202400000579 a :AccidentMortel;
+  :departement "86" .
+
+:Accident_202400000580 a :AccidentMortel;
+  :departement "29" .
+
+:Accident_202400000583 a :AccidentMortel;
+  :departement "85" .
+
+:Accident_202400000587 a :AccidentMortel;
+  :departement "54" .
+
+:Accident_202400000588 a :AccidentMortel;
+  :departement "42" .
+
+:Accident_202400000589 a :AccidentMortel;
+  :departement "46" .
+
+:Accident_202400000595 a :AccidentMortel;
+  :departement "25" .
+
+:Accident_202400000610 a :AccidentMortel;
+  :departement "27" .
+
+:Accident_202400000612 a :AccidentMortel;
+  :departement "37" .
+
+:Accident_202400000614 a :AccidentMortel;
+  :departement "67" .
+
+:Accident_202400000623 a :AccidentMortel;
+  :departement "976" .
+
+:Accident_202400000646 a :AccidentMortel;
+  :departement "86" .
+
+:Accident_202400000683 a :AccidentMortel;
+  :departement "95" .
+
+:Accident_202400000696 a :AccidentMortel;
+  :departement "83" .
+
+:Accident_202400000699 a :AccidentMortel;
+  :departement "80" .
+
+:Accident_202400000701 a :AccidentMortel;
+  :departement "77" .
+
+:Accident_202400000720 a :AccidentMortel;
+  :departement "59" .
+
+:Accident_202400000721 a :AccidentMortel;
+  :departement "59" .
+
+:Accident_202400000804 a :AccidentMortel;
+  :departement "10" .
+
+:Accident_202400000848 a :AccidentMortel;
+  :departement "33" .
+
+:Accident_202400000878 a :AccidentMortel;
+  :departement "89" .
+
+:Accident_202400000886 a :AccidentMortel;
+  :departement "76" .
+
+:Accident_202400000895 a :AccidentMortel;
+  :departement "61" .
+
+:Accident_202400000960 a :AccidentMortel;
+  :departement "37" .
+
+:Accident_202400001000 a :AccidentMortel;
+  :departement "19" .
+
+:Accident_202400001012 a :AccidentMortel;
+  :departement "85" .
+
+:Accident_202400001088 a :AccidentMortel;
+  :departement "59" .
+
+:Accident_202400001158 a :AccidentMortel;
+  :departement "07" .
+
+:Accident_202400001164 a :AccidentMortel;
+  :departement "85" .
+
+:Accident_202400001168 a :AccidentMortel;
+  :departement "71" .
+
+:Accident_202400001171 a :AccidentMortel;
+  :departement "33" .
+
+:Accident_202400001218 a :AccidentMortel;
+  :departement "72" .
+
+:Accident_202400001223 a :AccidentMortel;
+  :departement "01" .
+
+:Accident_202400001226 a :AccidentMortel;
+  :departement "09" .
+
+:Accident_202400001236 a :AccidentMortel;
+  :departement "62" .
+
+:Accident_202400001254 a :AccidentMortel;
+  :departement "59" .
+
+:Accident_202400001261 a :AccidentMortel;
+  :departement "59" .
+
+:Accident_202400001285 a :AccidentMortel;
+  :departement "91" .
+
+:Accident_202400001291 a :AccidentMortel;
+  :departement "49" .
+
+:Accident_202400001296 a :AccidentMortel;
+  :departement "94" .
+
+:Accident_202400001317 a :AccidentMortel;
+  :departement "79" .
+
+:Accident_202400001346 a :AccidentMortel;
+  :departement "01" .
+
+:Accident_202400001352 a :AccidentMortel;
+  :departement "43" .
+
+:Accident_202400001361 a :AccidentMortel;
+  :departement "17" .
+
+:Accident_202400001365 a :AccidentMortel;
+  :departement "30" .
+
+:Accident_202400001380 a :AccidentMortel;
+  :departement "77" .
+
+:Accident_202400001386 a :AccidentMortel;
+  :departement "84" .
+
+:Accident_202400001389 a :AccidentMortel;
+  :departement "987" .
+
+:Accident_202400001401 a :AccidentMortel;
+  :departement "972" .
+
+:Accident_202400001426 a :AccidentMortel;
+  :departement "71" .
+
+:Accident_202400001430 a :AccidentMortel;
+  :departement "89" .
+
+:Accident_202400001478 a :AccidentMortel;
+  :departement "93" .
+
+:Accident_202400001484 a :AccidentMortel;
+  :departement "93" .
+
+:Accident_202400001503 a :AccidentMortel;
+  :departement "60" .
+
+:Accident_202400001514 a :AccidentMortel;
+  :departement "2B" .
+
+:Accident_202400001519 a :AccidentMortel;
+  :departement "55" .
+
+:Accident_202400001528 a :AccidentMortel;
+  :departement "15" .
+
+:Accident_202400001530 a :AccidentMortel;
+  :departement "72" .
+
+:Accident_202400001587 a :AccidentMortel;
+  :departement "35" .
+
+:Accident_202400001593 a :AccidentMortel;
+  :departement "38" .
+
+:Accident_202400001594 a :AccidentMortel;
+  :departement "33" .
+
+:Accident_202400001598 a :AccidentMortel;
+  :departement "50" .
+
+:Accident_202400001610 a :AccidentMortel;
+  :departement "85" .
+
+:Accident_202400001623 a :AccidentMortel;
+  :departement "13" .
+
+:Accident_202400001624 a :AccidentMortel;
+  :departement "02" .
+
+:Accident_202400001646 a :AccidentMortel;
+  :departement "34" .
+
+:Accident_202400001655 a :AccidentMortel;
+  :departement "38" .
+
+:Accident_202400001659 a :AccidentMortel;
+  :departement "03" .
+
+:Accident_202400001660 a :AccidentMortel;
+  :departement "01" .
