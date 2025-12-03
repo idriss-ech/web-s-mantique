@@ -146,7 +146,7 @@ Ces avantages sont d'avoir des caractéristiques contextuelles (luminosité, gra
 3. **Alignabilité** : Possibilité future de lier à des référentiels externes (DBpedia, GeoNames)
 
 
--> Le projet faite avec  l'approche « Ontology-Driven » (Top-Down) est dans le dossier "*old_version*"
+-> Le projet faite avec  l'approche « Ontology-Driven » (Top-Down) est dans le dossier "*projet_Approche_Data_Driven*"
 
 
 
