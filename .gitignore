@@ -1,2 +1,14 @@
-env
-output
+# Python virtual environment
+venv/
+env/
+
+# Output files (large RDF files)
+output/
+*.ttl
+
+# IDE files
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
