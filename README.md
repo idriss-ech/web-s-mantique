@@ -96,8 +96,9 @@ projet/
 │   └── ref-usag/               # Référentiels usagers
 ├── output/
 │   └── accidents25.ttl         # Graphe RDF généré (sortie)
-├── assets/                      # Images et documentation
-└── README.md                    # Ce fichier
+├── resultats_sparql/           # Résultats des requêtes SPARQL (CSV)
+├── assets/                     # Images et documentation
+└── README.md                   # Ce fichier
 ```
 
 ---
@@ -105,14 +106,13 @@ projet/
 
 ## Source des Données
 
+[![Data Source](https://img.shields.io/badge/Data-data.gouv.fr-blue?style=for-the-badge)](https://www.data.gouv.fr/datasets/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2024)
 
+Les données proviennent de la **[base BAAC (Bulletins d'Analyse des Accidents Corporels)](https://www.data.gouv.fr/datasets/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2024)** mise à disposition par le gouvernement français sur data.gouv.fr.
 
-[![Data Source](https://img.shields.io/badge/Data-data.gouv.fr-blue?style=for-the-badge)](https://www.data.gouv.fr/fr/datasets/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2023/)
+**Dataset utilisé :** Bases de données annuelles des accidents corporels de la circulation routière - **Année 2024 uniquement**
 
-
-Les données proviennent de la **[base BAAC](https://www.data.gouv.fr/fr/datasets/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2023/)** mise à disposition par le gouvernement français sur data.gouv.fr.
-
-**Dataset utilisé :** Accidents corporels de la circulation routière - Année 2024
+> **Note :** Ce projet se concentre exclusivement sur les données de l'année 2024. Le dataset complet couvre les années 2005 à 2024, mais seules les données 2024 ont été utilisées pour cette analyse.
 
 Les fichiers de référence permettent de convertir les codes BAAC en libellés lisibles (ex: code "1" → "Plein jour" pour la luminosité).
 
@@ -426,11 +426,11 @@ LIMIT 20
 ---
 
 
-## Auteur
+## Réalisé par
 
+- **Idriss Echakouki**  
+- **Beandapa Yannick**  
 
-
-**Idriss Echcharqy**  
 Master 2 Génie Informatique - IM2AG  
 Université Grenoble Alpes
 
