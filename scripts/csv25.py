@@ -100,6 +100,17 @@ REF_MANV = load_ref_map('ref-veh', 'manv.csv', 'Code', 'Description', ',')
 REF_SENC = load_ref_map('ref-veh', 'senc.csv', 'Code', 'Description', ',')
 REF_MOTOR = {} # Not provided in list, assuming integer or manual map if needed.
 
+# Additional ref_lieux
+REF_VOSP = load_ref_map('ref_lieux', 'vosp.csv', 'Code', 'Description', ',')
+
+# Additional ref-usag (pedestrian fields)
+REF_LOCP = load_ref_map('ref-usag', 'locp.csv', 'Code', 'Description', ',')
+REF_ACTP = load_ref_map('ref-usag', 'actp.csv', 'Code', 'Description', ',')
+REF_ETATP = load_ref_map('ref-usag', 'etatp.csv', 'Code', 'Description', ',')
+
+# Department to DBpedia mapping
+REF_DEPT = load_ref_map('ref-carac', 'Département-français.csv', 'DEP_CODE', 'DEP_NOM', ',')
+
 # --- Helper Functions ---
 def clean_id(value):
     if not value: return ""
@@ -158,6 +169,13 @@ declare_property(ONTO_NS.etatSurface, OWL.DatatypeProperty)
 declare_property(ONTO_NS.infrastructure, OWL.DatatypeProperty)
 declare_property(ONTO_NS.situation, OWL.DatatypeProperty)
 declare_property(ONTO_NS.vitesseMax, OWL.DatatypeProperty)
+declare_property(ONTO_NS.indiceNumero1, OWL.DatatypeProperty)
+declare_property(ONTO_NS.indiceNumero2, OWL.DatatypeProperty)
+declare_property(ONTO_NS.voieReservee, OWL.DatatypeProperty)
+declare_property(ONTO_NS.pointRepere, OWL.DatatypeProperty)
+declare_property(ONTO_NS.distancePointRepere, OWL.DatatypeProperty)
+declare_property(ONTO_NS.largeurTerrePlein, OWL.DatatypeProperty)
+declare_property(ONTO_NS.largeurRoute, OWL.DatatypeProperty)
 
 declare_property(ONTO_NS.idVehicule, OWL.DatatypeProperty)
 declare_property(ONTO_NS.sensCirculation, OWL.DatatypeProperty)
@@ -167,6 +185,8 @@ declare_property(ONTO_NS.obstacleMobile, OWL.DatatypeProperty)
 declare_property(ONTO_NS.pointChoc, OWL.DatatypeProperty)
 declare_property(ONTO_NS.manoeuvre, OWL.DatatypeProperty)
 declare_property(ONTO_NS.motorisation, OWL.DatatypeProperty)
+declare_property(ONTO_NS.numeroVehicule, OWL.DatatypeProperty)
+declare_property(ONTO_NS.occupantsTransportCommun, OWL.DatatypeProperty)
 
 declare_property(ONTO_NS.idUsager, OWL.DatatypeProperty)
 declare_property(ONTO_NS.place, OWL.DatatypeProperty)
@@ -176,11 +196,18 @@ declare_property(ONTO_NS.sexe, OWL.DatatypeProperty)
 declare_property(ONTO_NS.anneeNaissance, OWL.DatatypeProperty)
 declare_property(ONTO_NS.motifDeplacement, OWL.DatatypeProperty)
 declare_property(ONTO_NS.equipementSecurite, OWL.DatatypeProperty)
+declare_property(ONTO_NS.equipementSecurite2, OWL.DatatypeProperty)
+declare_property(ONTO_NS.equipementSecurite3, OWL.DatatypeProperty)
+declare_property(ONTO_NS.numeroVehiculeUsager, OWL.DatatypeProperty)
+declare_property(ONTO_NS.localisationPieton, OWL.DatatypeProperty)
+declare_property(ONTO_NS.actionPieton, OWL.DatatypeProperty)
+declare_property(ONTO_NS.etatPieton, OWL.DatatypeProperty)
 
 declare_property(ONTO_NS.aLieu, OWL.ObjectProperty)
 declare_property(ONTO_NS.impliqueVehicule, OWL.ObjectProperty)
 declare_property(ONTO_NS.impliqueUsager, OWL.ObjectProperty)
 declare_property(ONTO_NS.occupationVehicule, OWL.ObjectProperty)
+declare_property(ONTO_NS.departementDBpedia, OWL.ObjectProperty)
 
 
 def process_caracteristiques():
@@ -224,6 +251,19 @@ def process_caracteristiques():
             long = clean_float(row.get('long'))
             if lat: g.add((accident_uri, ONTO_NS.latitude, Literal(lat, datatype=XSD.decimal)))
             if long: g.add((accident_uri, ONTO_NS.longitude, Literal(long, datatype=XSD.decimal)))
+            
+            # DBpedia Integration
+            dept_code = row.get('dep')
+            if dept_code:
+                # Normalize department code to 3 digits (matching format in REF_DEPT)
+                dept_code_normalized = dept_code.strip().zfill(3)
+                if dept_code_normalized in REF_DEPT:
+                    dept_name = REF_DEPT[dept_code_normalized]
+                    # Create DBpedia URI (French DBpedia)
+                    # Clean department name for URI (replace spaces with underscores, remove special chars)
+                    dept_uri_name = dept_name.replace(' ', '_').replace("'", '%27')
+                    dbpedia_uri = URIRef(f"http://fr.dbpedia.org/resource/{dept_uri_name}")
+                    g.add((accident_uri, ONTO_NS.departementDBpedia, dbpedia_uri))
 
 def process_lieux():
     print("Processing LIEUX...")
@@ -263,6 +303,22 @@ def process_lieux():
             if row.get('voie'): g.add((lieu_uri, ONTO_NS.numeroRoute, Literal(row['voie'], datatype=XSD.string)))
             if clean_int(row.get('nbv')): g.add((lieu_uri, ONTO_NS.nbVoies, Literal(clean_int(row['nbv']), datatype=XSD.integer)))
             if clean_int(row.get('vma')): g.add((lieu_uri, ONTO_NS.vitesseMax, Literal(clean_int(row['vma']), datatype=XSD.integer)))
+            
+            # Missing fields - now added
+            if row.get('v1'): g.add((lieu_uri, ONTO_NS.indiceNumero1, Literal(row['v1'], datatype=XSD.string)))
+            if row.get('v2'): g.add((lieu_uri, ONTO_NS.indiceNumero2, Literal(row['v2'], datatype=XSD.string)))
+            
+            vosp_label = get_label(row.get('vosp'), REF_VOSP)
+            if vosp_label: g.add((lieu_uri, ONTO_NS.voieReservee, Literal(vosp_label, datatype=XSD.string)))
+            
+            if row.get('pr'): g.add((lieu_uri, ONTO_NS.pointRepere, Literal(row['pr'], datatype=XSD.string)))
+            if clean_int(row.get('pr1')): g.add((lieu_uri, ONTO_NS.distancePointRepere, Literal(clean_int(row['pr1']), datatype=XSD.integer)))
+            
+            lartpc_val = clean_float(row.get('lartpc'))
+            if lartpc_val: g.add((lieu_uri, ONTO_NS.largeurTerrePlein, Literal(lartpc_val, datatype=XSD.decimal)))
+            
+            larrout_val = clean_float(row.get('larrout'))
+            if larrout_val: g.add((lieu_uri, ONTO_NS.largeurRoute, Literal(larrout_val, datatype=XSD.decimal)))
 
 def process_vehicules():
     print("Processing VEHICULES...")
@@ -299,6 +355,10 @@ def process_vehicules():
             if senc_label: g.add((vehicule_uri, ONTO_NS.sensCirculation, Literal(senc_label, datatype=XSD.string)))
             
             if clean_int(row.get('motor')): g.add((vehicule_uri, ONTO_NS.motorisation, Literal(clean_int(row['motor']), datatype=XSD.integer)))
+            
+            # Missing fields - now added
+            if row.get('num_veh'): g.add((vehicule_uri, ONTO_NS.numeroVehicule, Literal(row['num_veh'], datatype=XSD.string)))
+            if clean_int(row.get('occutc')): g.add((vehicule_uri, ONTO_NS.occupantsTransportCommun, Literal(clean_int(row['occutc']), datatype=XSD.integer)))
 
 def process_usagers():
     print("Processing USAGERS...")
@@ -342,6 +402,25 @@ def process_usagers():
             if place_label: g.add((usager_uri, ONTO_NS.place, Literal(place_label, datatype=XSD.string)))
             
             if clean_int(row.get('an_nais')): g.add((usager_uri, ONTO_NS.anneeNaissance, Literal(clean_int(row['an_nais']), datatype=XSD.integer)))
+            
+            # Missing fields - now added
+            if row.get('num_veh'): g.add((usager_uri, ONTO_NS.numeroVehiculeUsager, Literal(row['num_veh'], datatype=XSD.string)))
+            
+            secu2_label = get_label(row.get('secu2'), REF_SECU)
+            if secu2_label: g.add((usager_uri, ONTO_NS.equipementSecurite2, Literal(secu2_label, datatype=XSD.string)))
+            
+            secu3_label = get_label(row.get('secu3'), REF_SECU)
+            if secu3_label: g.add((usager_uri, ONTO_NS.equipementSecurite3, Literal(secu3_label, datatype=XSD.string)))
+            
+            # Pedestrian-specific fields
+            locp_label = get_label(row.get('locp'), REF_LOCP)
+            if locp_label: g.add((usager_uri, ONTO_NS.localisationPieton, Literal(locp_label, datatype=XSD.string)))
+            
+            actp_label = get_label(row.get('actp'), REF_ACTP)
+            if actp_label: g.add((usager_uri, ONTO_NS.actionPieton, Literal(actp_label, datatype=XSD.string)))
+            
+            etatp_label = get_label(row.get('etatp'), REF_ETATP)
+            if etatp_label: g.add((usager_uri, ONTO_NS.etatPieton, Literal(etatp_label, datatype=XSD.string)))
 
 if __name__ == "__main__":
     process_caracteristiques()

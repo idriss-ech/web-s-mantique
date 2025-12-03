@@ -1,0 +1,21 @@
+localisationPieton,actionPieton,etatPieton,nombre
+Sur passage piéton sans signalisation lumineuse,Traversant,Seul,2320
+A – 50 m du passage piéton,Traversant,Seul,1256
+Sur passage piéton avec signalisation lumineuse,Traversant,Seul,1002
+A + 50 m du passage piéton,Traversant,Seul,659
+Sur passage piéton sans signalisation lumineuse,Traversant,Accompagné,582
+Sur passage piéton avec signalisation lumineuse,Traversant,Accompagné,281
+A – 50 m du passage piéton,Traversant,Accompagné,207
+9,Traversant,Seul,129
+9,B,Seul,121
+Sur trottoir,Traversant,Seul,119
+A + 50 m du passage piéton,Traversant,Accompagné,118
+Sur trottoir,Autre,Seul,112
+Sur trottoir,Se déplaçant - Sens véhicule heurtant,Seul,103
+A + 50 m du passage piéton,Autre,Seul,102
+A + 50 m du passage piéton,Se déplaçant - Sens véhicule heurtant,Seul,102
+A – 50 m du passage piéton,Jouant – courant,Seul,72
+A – 50 m du passage piéton,Se déplaçant - Sens véhicule heurtant,Seul,71
+Sur trottoir,Autre,Accompagné,68
+A + 50 m du passage piéton,Se déplaçant - Sens inverse du véhicule,Seul,66
+Sur accotement,Se déplaçant - Sens véhicule heurtant,Seul,63

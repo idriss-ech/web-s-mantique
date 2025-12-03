@@ -1,0 +1,51 @@
+accident,voieReservee,categorieRoute
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000001,0,Route Départementale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000002,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000003,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000004,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000005,0,Autoroute
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000005,Piste cyclable,Autoroute
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000006,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000007,0,Parc de stationnement ouvert à la circulation publique
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000008,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000009,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000010,Piste cyclable,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000011,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000012,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000013,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000014,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000014,Piste cyclable,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000015, -1,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000015,Voie réservée,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000016, -1,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000016,Bande cyclable,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000017, -1,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000017,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000018,Piste cyclable,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000019,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000020,0,Route Départementale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000021,Voie réservée,Route Départementale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000022,0,Route Départementale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000023,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000023,Voie réservée,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000024,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000025,0,Route Départementale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000026,Piste cyclable,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000027,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000028,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000029,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000030,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000030,Piste cyclable,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000031,Bande cyclable,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000032,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000033,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000034,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000035,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000036,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000037,0,Route Départementale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000038,0,Route Nationale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000039,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000040,0,Route Départementale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000041,0,Voie Communale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000042,0,Route Départementale
+http://www.semanticweb.org/ontologies/accidents-routiers-v2#Accident_202400000043,0,Voie Communale
